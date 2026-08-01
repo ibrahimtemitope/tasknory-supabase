@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Management - Tasknory Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="icon" href="../tasknory.jpg">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .admin-header {
+            margin-bottom: 2rem;
+        }
+        .admin-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--card-bg, #fff);
+            border: 1px solid var(--border-color, #e0e0e0);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--brand-blue, #007bff);
+        }
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary, #666);
+            text-transform: uppercase;
+        }
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .filters select, .filters input {
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color, #e0e0e0);
+        }
+        .consultation-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg, #fff);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .consultation-table th,
+        .consultation-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color, #e0e0e0);
+        }
+        .consultation-table th {
+            background: var(--bg-secondary, #f8f9fa);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-secondary, #666);
+        }
+        .consultation-table tr:hover {
+            background: var(--bg-secondary, #f8f9fa);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status-badge.pending { background: #fff3cd; color: #856404; }
+        .status-badge.scheduled { background: #cce5ff; color: #004085; }
+        .status-badge.completed { background: #d4edda; color: #155724; }
+        .status-badge.no_show { background: #f8d7da; color: #721c24; }
+        .status-badge.rescheduled { background: #d1ecf1; color: #0c5460; }
+        .status-badge.blocked { background: #f8d7da; color: #721c24; }
+        .status-badge.cancelled { background: #e2e3e5; color: #383d41; }
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .btn-small {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-schedule { background: #007bff; color: white; }
+        .btn-complete { background: #28a745; color: white; }
+        .btn-noshow { background: #dc3545; color: white; }
+        .btn-notes { background: #6c757d; color: white; }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--card-bg, #fff);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h2 {
+            margin-bottom: 1.5rem;
+        }
+        .modal .form-group {
+            margin-bottom: 1rem;
+        }
+        .modal .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .modal .form-group select,
+        .modal .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color, #e0e0e0);
+            border-radius: 6px;
+        }
+        .modal .form-group textarea {
+            min-height: 100px;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .slot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+        .slot-option {
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 6px;
+            padding: 0.75rem;
+            cursor: pointer;
+            text-align: center;
+        }
+        .slot-option:hover, .slot-option.selected {
+            border-color: #007bff;
+            background: rgba(0,123,255,0.05);
+        }
+        .detail-view {
+            margin-bottom: 1.5rem;
+        }
+        .detail-view h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary, #666);
+        }
+        .detail-view p {
+            margin: 0.25rem 0;
+        }
+        @media (max-width: 768px) {
+            .consultation-table {
+                font-size: 0.85rem;
+            }
+            .consultation-table th, .consultation-table td {
+                padding: 0.5rem;
+            }
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <h1 class="logo">Tasknory Admin</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="consultations.html" class="nav-link active"><span class="label">Consultations</span></a></li>
+            <li><a href="users.html" class="nav-link"><span class="label">Users</span></a></li>
+            <li><a href="jobs.html" class="nav-link"><span class="label">Jobs</span></a></li>
+            <li><a href="verifications.html" class="nav-link"><span class="label">Verifications</span></a></li>
+            <li><a href="withdrawals.html" class="nav-link"><span class="label">Withdrawals</span></a></li>
+            <li class="nav-item"><a href="#" class="nav-link logout"><span>Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="header-content">
+                <h1>Consultation Management</h1>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>Consultation Requests</h1>
+                    <p>Manage client call bookings and scheduling</p>
+                </div>
+
+                <div class="stats-cards" id="statsCards">
+                    <div class="stat-card">
+                        <div class="number" id="statTotal">-</div>
+                        <div class="label">Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="statPending">-</div>
+                        <div class="label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="statScheduled">-</div>
+                        <div class="label">Scheduled</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="statCompleted">-</div>
+                        <div class="label">Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="statNoShow">-</div>
+                        <div class="label">No Show</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="statBlocked">-</div>
+                        <div class="label">Blocked</div>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <select id="filterStatus">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="scheduled">Scheduled</option>
+                        <option value="completed">Completed</option>
+                        <option value="no_show">No Show</option>
+                        <option value="rescheduled">Rescheduled</option>
+                        <option value="blocked">Blocked</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <select id="filterType">
+                        <option value="">All Types</option>
+                        <option value="guidance">Guidance</option>
+                        <option value="freelance_request">Freelance Request</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Search client name or email...">
+                    <button class="btn btn-primary" onclick="loadConsultations()">Refresh</button>
+                </div>
+
+                <div id="tableContainer">
+                    <table class="consultation-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Type</th>
+                                <th>Details</th>
+                                <th>Status</th>
+                                <th>Scheduled</th>
+                                <th>No Shows</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="consultationsTable">
+                            <tr><td colspan="7" style="text-align: center; padding: 2rem;">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div class="modal-overlay" id="scheduleModal">
+        <div class="modal">
+            <h2>Schedule Call</h2>
+            <div class="detail-view" id="scheduleDetail"></div>
+            <div class="form-group">
+                <label>Select Available Slot</label>
+                <div class="slot-grid" id="availableSlots"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('scheduleModal')">Cancel</button>
+                <button class="btn btn-primary" id="confirmScheduleBtn" onclick="confirmSchedule()" disabled>Schedule Call</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Modal -->
+    <div class="modal-overlay" id="completeModal">
+        <div class="modal">
+            <h2>Mark as Completed</h2>
+            <div class="detail-view" id="completeDetail"></div>
+            <div class="form-group">
+                <label>Call Summary</label>
+                <textarea id="callSummary" placeholder="What was discussed during the call..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Admin Notes</label>
+                <textarea id="adminNotes" placeholder="Internal notes, next steps, etc."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('completeModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmComplete()">Mark Completed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Show Modal -->
+    <div class="modal-overlay" id="noShowModal">
+        <div class="modal">
+            <h2>Mark as No Show</h2>
+            <div class="detail-view" id="noShowDetail"></div>
+            <div class="alert" style="background: #fff3cd; border: 1px solid #ffc107; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
+                <strong>⚠️ Warning:</strong> This will mark the client as a no-show. 
+                <span id="noShowWarning"></span>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('noShowModal')">Cancel</button>
+                <button class="btn btn-noshow" onclick="confirmNoShow()">Mark No Show</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const sidebar = document.getElementById("sidebar");
+            if (mobileMenuBtn && sidebar) {
+                mobileMenuBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle("mobile-open");
+                });
+                document.addEventListener("click", function (e) {
+                    if (sidebar.classList.contains("mobile-open")) {
+                        if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn) {
+                            sidebar.classList.remove("mobile-open");
+                        }
+                    }
+                });
+            }
+            loadConsultations();
+            loadStats();
+        });
+    </script>
+    <script src="../assets/js/admin-consultations.js" type="module"></script>
+</body>
+</html>

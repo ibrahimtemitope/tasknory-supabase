@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Tasknory V5</title>
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="icon" href="../tasknory.jpg">
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <h1 class="logo">Tasknory V5 Admin</h1>
+      </div>
+      <!-- Add this right after .sidebar-head -->
+      <div class="theme-toggle-container">
+        <button
+          id="themeToggle"
+          class="theme-toggle-btn"
+          aria-label="Toggle theme"
+        >
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Dark Mode</span>
+        </button>
+      </div>
+
+      <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link active"><span class="label">Dashboard</span></a></li>
+            <li><a href="admin-skills.html" class="nav-link"><span class="label">Skill Verifications</span></a></li>
+            <li><a href="support-issues.html" class="nav-link"><span class="label">Support Inbox</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdrawal Processing</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"><span class="icon">🚪</span><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-wrapper" id="mainWrapper">
+      <header class="top-header">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-content">
+          <h1>Admin Dashboard</h1>
+          <div class="user-info">
+            <span>Admin!</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-container">
+        <!-- Stats Overview -->
+        <section class="admin-section">
+          <div class="section-header">
+            <h2>Platform Overview</h2>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">soon</div>
+              <div class="stat-label">Total Users</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">soon</div>
+              <div class="stat-label">Active Jobs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">soon</div>
+              <div class="stat-label">Pending Matches</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">soon</div>
+              <div class="stat-label">Total Revenue</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="admin-section">
+          <div class="section-header">
+            <h2>Quick Actions</h2>
+          </div>
+          <nav class="admin-nav">
+            <button class="active" data-tab="users" id="btnUsers">
+              Pending Users
+            </button>
+            <button data-tab="jobs" id="btnJobs">Pending Jobs</button>
+            <button data-tab="matches" id="btnMatch">All Matches</button>
+            <button data-tab="id-verifications" id="btnIdVerifications">ID Verifications</button>
+          </nav>
+
+          <div id="results" class="tab-content active">
+            <!-- Content will be loaded here by admin.js -->
+          </div>
+
+          <div class="badges-section">
+            <h2>Badges Management</h2>
+            <button id="updateBadgesBtn" class="btn btn-primary">
+              Run Badge Update
+            </button>
+            <p id="badgeUpdateStatus"></p>
+          </div>
+
+          <div class="admin-actions" style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+    <button id="recalculateLadderBtn" class="btn btn-primary">
+        🔄 Recalculate Ladder Badges
+    </button>
+    <button id="recalculateAchievementBtn" class="btn btn-secondary">
+        🏆 Recalculate Achievement Badges
+    </button>
+</div>
+
+          <div class="overview-section">
+            <h2>Freelancer Badges Overview</h2>
+            <button id="loadBadgesOverviewBtn" class="btn btn-secondary">
+              Load Overview
+            </button>
+            <div id="badgesOverview"></div>
+          </div>
+
+
+        </section>
+      </div>
+    </div>
+
+    <script type="module">
+      import { updateMainBadges } from "../assets/js/badges.js";
+      import { updateAchievementBadges } from "../assets/js/badges.js";
+
+      document
+        .getElementById("updateBadgesBtn")
+        .addEventListener("click", async () => {
+          const statusEl = document.getElementById("badgeUpdateStatus");
+          statusEl.textContent = "Updating badges... please wait ⏳";
+
+          try {
+            await updateMainBadges();
+            await updateAchievementBadges();
+            statusEl.textContent = "✅ Badges updated successfully!";
+          } catch (err) {
+            console.error("Error running badge update:", err);
+            statusEl.textContent = "❌ Failed to update badges. Check console.";
+          }
+        });
+    </script>
+    <script src="../assets/js/admin-badges.js" type="module"></script>
+    <script src="../assets/js/admin-ui.js" type="module"></script>
+    <script src="../assets/js/admin.js" type="module"></script>
+  </body>
+</html>

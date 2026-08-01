@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Skill Verifications - Tasknory V5</title>
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="icon" href="../tasknory.jpg">
+</head>
+<body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <h1 class="logo">Tasknory V5 Admin</h1>
+        </div>
+        <!-- Add this right after .sidebar-head -->
+<div class="theme-toggle-container">
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark Mode</span>
+    </button>
+</div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="admin-skills.html" class="nav-link active"><span class="label">Skill Verifications</span></a></li>
+            <li><a href="support-issues.html" class="nav-link"><span class="label">Support Inbox</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdrawal Processing</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"><span class="icon">🚪</span><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-content">
+                <h1>Skill Verifications</h1>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <!-- Stats Overview -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>Verification Overview</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="refreshBtn">
+                            <span class="icon">🔄</span> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendingCount">0</div>
+                        <div class="stat-label">Pending Verifications</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="approvedCount">0</div>
+                        <div class="stat-label">Approved Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="rejectedCount">0</div>
+                        <div class="stat-label">Rejected Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalCount">0</div>
+                        <div class="stat-label">Total Verifications</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pending Verifications -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>Skill Verifications</h2>
+                    <div class="filter-controls">
+                        <select id="filterSelect" class="form-input">
+                            <option value="all">All Verifications</option>
+                            <option value="pending">Pending Only</option>
+                            <option value="approved">Approved Only</option>
+                            <option value="rejected">Rejected Only</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="verificationList" class="admin-grid">
+                    <!-- Content will be loaded here by skills.js -->
+                    <div class="loading">Loading verifications...</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Template for each verification card -->
+    <template id="verificationCardTemplate">
+        <div class="card verification-card">
+            <div class="card-header">
+                <h3 class="skill-name"></h3>
+                <span class="status-badge pending">Pending</span>
+            </div>
+            
+            <div class="card-content">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Freelancer:</span>
+                        <span class="value freelancer-name"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Experience:</span>
+                        <span class="value years"></span> years
+                    </div>
+                </div>
+                
+                <div class="proof-section">
+                    <div class="proof-item">
+                        <span class="label">Reference:</span>
+                        <a href="#" target="_blank" class="value reference-link">View Reference</a>
+                    </div>
+                    <div class="proof-item proof-wrapper">
+                        <span class="label">Proof:</span>
+                        <a href="#" target="_blank" class="value proof-link">Download Proof</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <button class="btn btn-success approve-btn">
+                    <span class="icon">✅</span> Approve
+                </button>
+                <button class="btn btn-danger reject-btn">
+                    <span class="icon">❌</span> Reject
+                </button>
+                <button class="btn btn-outline view-details-btn">
+                    <span class="icon">👁️</span> Details
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Modal for detailed view -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Skill Verification Details</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin-ui.js" type="module"></script>
+    <script src="../assets/js/admin/skills.js" type="module"></script>
+</body>
+</html>

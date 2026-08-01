@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Withdrawal Management - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="stylesheet" href="../assets/css/admin/withdrawal.css">
+    <link rel="icon" href="../tasknory.jpg">
+</head>
+<body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <h1 class="logo">Tasknory V5 Admin</h1>
+        </div>
+        <!-- Add this right after .sidebar-head -->
+<div class="theme-toggle-container">
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark Mode</span>
+    </button>
+</div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="admin-skills.html" class="nav-link"><span class="label">Skill Verifications</span></a></li>
+            <li><a href="support-issues.html" class="nav-link"><span class="label">Support Inbox</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link active"><span class="label">Withdrawal Processing</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"><span class="icon">🚪</span><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-content">
+                <h1>Withdrawal Management</h1>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <div class="admin-withdrawal-container">
+                <!-- Statistics Cards -->
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-number pending" id="pendingCount">0</div>
+                        <div class="stat-label">Pending Requests</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number processing" id="processingCount">0</div>
+                        <div class="stat-label">Processing</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number completed" id="completedCount">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalAmount">0 TN</div>
+                        <div class="stat-label">Total Processed Today</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="statusFilter">Status:</label>
+                        <select id="statusFilter" class="form-select">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="completed">Completed</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="methodFilter">Method:</label>
+                        <select id="methodFilter" class="form-select">
+                            <option value="all">All Methods</option>
+                            <option value="bank">Bank Transfer</option>
+                            <option value="crypto">Crypto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="dateFilter">Date:</label>
+                        <input type="date" id="dateFilter" class="form-input">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <button class="btn btn-secondary" id="resetFilters">Reset Filters</button>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="bulk-actions" id="bulkActions" style="display: none;">
+                    <h4>Bulk Actions</h4>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="bulkStartProcessing">Start Processing Selected</button>
+                        <button class="btn btn-success" id="bulkComplete">Mark as Completed</button>
+                        <button class="btn btn-danger" id="bulkReject">Reject Selected</button>
+                        <span id="selectedCount">0 selected</span>
+                    </div>
+                </div>
+
+                <!-- Withdrawals List -->
+                <section class="card">
+                    <h2>Withdrawal Requests</h2>
+                    <div id="withdrawalsList">
+                        <div class="loading">Loading withdrawal requests...</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+            <!-- Action Modal -->
+    <div id="actionModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Process Withdrawal</h3>
+                <button class="close-modal" id="closeActionModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelAction">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmAction">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rejection Modal -->
+    <div id="rejectModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reject Withdrawal</h3>
+                <button class="close-modal" id="closeRejectModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="rejectionReason">Reason for Rejection</label>
+                    <textarea id="rejectionReason" class="form-input" rows="4" 
+                              placeholder="Please provide a reason for rejecting this withdrawal request..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelReject">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmReject">Reject Withdrawal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../assets/js/admin-ui.js" type="module"></script>
+    <script type="module" src="../../assets/js/admin/admin-withdrawals.js"></script>
+</body>
+</html>
