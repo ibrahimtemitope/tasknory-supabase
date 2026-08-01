@@ -1,7 +1,7 @@
 // script.js — SUPABASE VERSION
 // Landing page script. Only the newsletter/waitlist API calls changed.
 // Import the global Supabase client
-import { supabase } from './api.js';
+import { supabase } from './assets/js/api.js';
 
 /**
  * TASKNORY V3 - AFRICAN AI SPECIALIST INTERACTION SYSTEM
