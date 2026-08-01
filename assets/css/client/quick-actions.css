@@ -1,0 +1,118 @@
+/* =========================
+   QUICK ACTIONS (Book a Call / Post Job)
+   ========================= */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.action-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.action-card.primary::before {
+    background: var(--brand-blue);
+}
+
+.action-card.secondary::before {
+    background: var(--brand-yellow);
+}
+
+.action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--brand-blue);
+}
+
+.action-card .action-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.action-card .action-content {
+    flex: 1;
+}
+
+.action-card .action-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+}
+
+.action-card .action-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.action-card .action-content .btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
+}
+
+/* Primary action (Book a Call) */
+.action-card.primary .btn {
+    background: var(--brand-blue);
+    color: var(--brand-white);
+    border-color: var(--brand-blue);
+}
+
+.action-card.primary .btn:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Secondary action (Post a Job) */
+.action-card.secondary .btn {
+    background: transparent;
+    color: var(--brand-yellow);
+    border-color: var(--brand-yellow);
+}
+
+.action-card.secondary .btn:hover {
+    background: var(--brand-yellow);
+    color: var(--brand-white);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .action-card {
+        padding: 1.25rem;
+    }
+
+    .action-card .action-icon {
+        font-size: 2rem;
+    }
+}

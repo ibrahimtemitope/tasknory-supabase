@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9FSB13YC3E');
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Tasknory | AI Integration Insights</title>
+  <meta name="description" content="Practical guides for adding AI to Shopify, WordPress, and React websites. Learn how to hire AI integration specialists and future-proof your business.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tasknory.com/blog/">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="../tasknory.jpg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../style.css?v=5">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tasknory Blog — AI Integration Insights">
+  <meta property="og:description" content="Practical guides for adding AI to your existing website without rebuilding from scratch.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com/blog/">
+  <meta property="og:type" content="website">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="main-nav" id="mainNav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <div class="logo-mark"><span>T</span><div class="logo-pulse"></div></div>
+        <div class="logo-text"><h1>Tasknory</h1><p class="logo-subtitle">LTD.</p></div>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/" class="nav-link">How It Works</a>
+        <a href="/" class="nav-link">Payments</a>
+        <a href="/" class="nav-link">Features</a>
+        <a href="/blog" class="nav-link">Blog</a>
+      </div>
+      <div class="nav-actions">
+        <a href="/client/signup.html" class="btn btn-secondary btn-small">For Clients</a>
+        <a href="/freelancer/signup.html" class="btn btn-primary btn-small">For AI Specialists</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
+          <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
+        </button>
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <section class="blog-hero">
+    <div class="blog-hero-container">
+      <div class="blog-hero-badge">
+        <span class="badge-dot"></span>
+        <span>AI Integration Insights</span>
+      </div>
+      <h1>Future-proof your website.</h1>
+      <p>Practical guides for adding AI to Shopify, WordPress, and React — without rebuilding from scratch.</p>
+    </div>
+  </section>
+
+  <!-- Toolbar -->
+  <div class="blog-toolbar">
+    <div class="blog-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="blogSearch" placeholder="Search articles..." autocomplete="off">
+    </div>
+    <div class="blog-categories" id="categoryFilters">
+      <button class="category-pill active" data-category="all">All</button>
+      <button class="category-pill" data-category="shopify">Shopify</button>
+      <button class="category-pill" data-category="wordpress">WordPress</button>
+      <button class="category-pill" data-category="react">React</button>
+      <button class="category-pill" data-category="strategy">Strategy</button>
+    </div>
+  </div>
+
+  <!-- Blog Grid -->
+  <section class="blog-section">
+    <div class="blog-container">
+      <div class="blog-grid" id="blogGrid">
+        <!-- Posts injected via JS -->
+      </div>
+
+      <!-- Empty State (hidden by default) -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <i class="fas fa-search"></i>
+        <h3>No articles found</h3>
+        <p>Try adjusting your search or category filter.</p>
+      </div>
+
+      <!-- Pagination -->
+      <div class="blog-pagination" id="pagination">
+        <a href="#" class="page-btn disabled" id="prevPage"><i class="fas fa-chevron-left"></i></a>
+        <a href="#" class="page-btn active" data-page="1">1</a>
+        <a href="#" class="page-btn" data-page="2">2</a>
+        <a href="#" class="page-btn" data-page="3">3</a>
+        <a href="#" class="page-btn" id="nextPage"><i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="blog-section" style="background:var(--bg-secondary);">
+    <div class="blog-container">
+      <div class="blog-newsletter">
+        <h3>Get AI integration tips in your inbox</h3>
+        <p>One email per week. No fluff. Just actionable guides for non-technical founders.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="form-group">
+            <input type="email" placeholder="you@company.com" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-mark"><span>T</span></div>
+          <div class="logo-text"><h3>Tasknory LTD.</h3><p class="logo-tagline">AI Integration Specialists</p></div>
+        </div>
+        <p class="footer-description">Reimagining freelancing with smart matching, verified AI specialists, and fixed-price outcomes.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/tasknory" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="link-group">
+          <h4 class="link-title">Platform</h4>
+          <a href="/" class="link-item">How It Works</a>
+          <a href="/" class="link-item">Payments</a>
+          <a href="/" class="link-item">Features</a>
+        </div>
+        <div class="link-group">
+          <h4 class="link-title">Resources</h4>
+          <a href="index.html" class="link-item">Blog</a>
+          <a href="#" class="link-item">Help Center</a>
+          <a href="#" class="link-item">Status</a>
+        </div>
+        <div class="link-group">
+          <h4 class="link-title">Legal</h4>
+          <a href="../legals.html" class="link-item">Terms of Service</a>
+          <a href="../legals.html" class="link-item">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="bottom-content">
+        <p class="copyright">&copy; 2026 Tasknory LTD. All rights reserved.</p>
+        <div class="bottom-links">
+          <a href="#" class="bottom-link">Sitemap</a>
+          <a href="#" class="bottom-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== SAMPLE DATA =====
+    // Replace this array with a fetch() to your Django API
+    const blogPosts = [
+      {
+        slug: "how-to-add-ai-chatbot-shopify-2026",
+        title: "How to Add an AI Chatbot to Your Shopify Store in 2026 (Without Coding)",
+        excerpt: "A step-by-step guide for non-technical founders. Learn how to install a custom AI chatbot that answers customer questions and captures leads 24/7.",
+        category: "shopify",
+        categoryLabel: "Shopify",
+        author: "Ibrahim Temitope",
+        authorInitial: "I",
+        date: "Apr 18, 2026",
+        readTime: "6 min read",
+        image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+        featured: true
+      },
+      {
+        slug: "wordpress-ai-agent-tutorial",
+        title: "Build a WordPress AI Agent That Books Appointments Automatically",
+        excerpt: "Turn your existing WordPress site into a lead-generating machine. We walk through plugins, API keys, and the exact prompt engineering you need.",
+        category: "wordpress",
+        categoryLabel: "WordPress",
+        author: "Ibrahim Temitope",
+        authorInitial: "I",
+        date: "Apr 12, 2026",
+        readTime: "8 min read",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+        featured: false
+      },
+      {
+        slug: "react-legacy-app-ai-integration",
+        title: "Adding AI to a Legacy React App: What We Learned From 3 Client Projects",
+        excerpt: "You don't need to rewrite your React app to add AI. Here's the architecture we use to inject LLM features into existing codebases in under 48 hours.",
+        category: "react",
+        categoryLabel: "React",
+        author: "Ibrahim Temitope",
+        authorInitial: "I",
+        date: "Apr 05, 2026",
+        readTime: "7 min read",
+        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
+        featured: false
+      },
+      {
+        slug: "hire-ai-specialist-without-upwork",
+        title: "Upwork vs Toptal vs Tasknory: Hiring AI Specialists Without the Bidding Wars",
+        excerpt: "Why the traditional freelance marketplace model fails for AI integrations — and what to look for when vetting a specialist for your specific stack.",
+        category: "strategy",
+        categoryLabel: "Strategy",
+        author: "Ibrahim Temitope",
+        authorInitial: "I",
+        date: "Mar 28, 2026",
+        readTime: "5 min read",
+        image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+        featured: false
+      },
+      {
+        slug: "shopify-product-recommender-ai",
+        title: "AI Product Recommenders for Shopify: Revenue Impact Analysis",
+        excerpt: "We measured conversion rates before and after adding an AI product recommender to three Shopify stores. The results surprised us.",
+        category: "shopify",
+        categoryLabel: "Shopify",
+        author: "Ibrahim Temitope",
+        authorInitial: "I",
+        date: "Mar 20, 2026",
+        readTime: "6 min read",
+        image: "https://images.unsplash.com/photo-1556740758-90de374c12ad?w=800&q=80",
+        featured: false
+      },
+      {
+        slug: "php-legacy-website-ai-chatbot",
+        title: "Yes, You Can Add AI to Your PHP Website From 2014",
+        excerpt: "Legacy PHP doesn't mean left behind. Here's how we integrated a modern AI chatbot into a 10-year-old custom PHP platform without breaking anything.",
+        category: "wordpress",
+        categoryLabel: "WordPress",
+        author: "Ibrahim Temitope",
+        authorInitial: "I",
+        date: "Mar 14, 2026",
+        readTime: "9 min read",
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+        featured: false
+      }
+    ];
+
+    // ===== RENDER POSTS =====
+    const grid = document.getElementById('blogGrid');
+    const emptyState = document.getElementById('emptyState');
+
+    function renderPosts(posts) {
+      grid.innerHTML = '';
+      if (posts.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      posts.forEach(post => {
+        const card = document.createElement('a');
+        card.href = `post.html?slug=${post.slug}`;
+        card.className = `blog-card ${post.featured ? 'featured-post' : ''}`;
+        card.innerHTML = `
+          <div class="blog-card-image">
+            <img src="${post.image}" alt="${post.title}" loading="lazy">
+            <span class="blog-card-category">${post.categoryLabel}</span>
+          </div>
+          <div class="blog-card-body">
+            <h2 class="blog-card-title">${post.title}</h2>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            <div class="blog-card-meta">
+              <span><i class="fas fa-user"></i> ${post.author}</span>
+              <span><i class="fas fa-calendar"></i> ${post.date}</span>
+              <span><i class="fas fa-clock"></i> ${post.readTime}</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== FILTERING =====
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function filterPosts() {
+      let filtered = blogPosts;
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentCategory);
+      }
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(p => 
+          p.title.toLowerCase().includes(q) || 
+          p.excerpt.toLowerCase().includes(q)
+        );
+      }
+      renderPosts(filtered);
+    }
+
+    document.getElementById('categoryFilters').addEventListener('click', e => {
+      if (e.target.classList.contains('category-pill')) {
+        document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentCategory = e.target.dataset.category;
+        filterPosts();
+      }
+    });
+
+    document.getElementById('blogSearch').addEventListener('input', e => {
+      searchQuery = e.target.value;
+      filterPosts();
+    });
+
+    // Initial render
+    renderPosts(blogPosts);
+
+    // ===== THEME TOGGLE =====
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('tasknory-theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+      html.setAttribute('data-theme', 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+    }
+    toggle?.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('tasknory-theme', next);
+    });
+
+    // ===== MOBILE NAV =====
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    let isOpen = false;
+    menuToggle?.addEventListener('click', () => {
+      isOpen = !isOpen;
+      navMenu.classList.toggle('active', isOpen);
+      menuToggle.querySelector('i').className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    navMenu?.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) { isOpen = false; navMenu.classList.remove('active'); menuToggle.querySelector('i').className = 'fas fa-bars'; document.body.style.overflow = ''; }
+      });
+    });
+
+    // ===== NEWSLETTER =====
+    document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+      await new Promise(r => setTimeout(r, 1200));
+      btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+      btn.style.background = 'var(--success-green)';
+      e.target.reset();
+      setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; }, 3000);
+    });
+  </script>
+</body>
+</html>

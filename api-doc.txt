@@ -1,0 +1,549 @@
+# Tasknory API Documentation
+
+Base URL: `http://127.0.0.1:8000` (development)  
+All endpoints require authentication unless marked as public.  
+Authentication: `Authorization: Token <your_token>` header.
+
+## Authentication
+
+### Signup
+- **URL**: `/api/auth/signup/`
+- **Method**: `POST`
+- **Permission**: AllowAny
+- **Request Body** (JSON):
+```json
+{
+  "username": "optional", // if not provided, uses email prefix
+  "email": "user@example.com",
+  "password": "password123",
+  "full_name": "John Doe",
+  "role": "freelancer" | "client",
+  "country": "US",
+  "telephone": "+1234567890",
+  "language": "English",
+  "tone": "professional"
+}
+```
+- **Response**: 201 Created
+```json
+{
+  "token": "9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b",
+  "user": { ... } // UserSerializer fields
+}
+```
+
+### Login
+- **URL**: `/api/auth/login/`
+- **Method**: `POST`
+- **Permission**: AllowAny
+- **Request Body** (JSON):
+```json
+{
+  "email": "user@example.com",  // or username
+  "password": "password123"
+}
+```
+- **Response**: 200 OK
+```json
+{
+  "token": "9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b",
+  "user": { ... }
+}
+```
+
+### Logout
+- **URL**: `/api/auth/logout/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated
+- **Response**: 200 OK
+```json
+{ "status": "logged out" }
+```
+
+## User
+
+### Get Current User
+- **URL**: `/api/user/me/`
+- **Method**: `GET`, `PUT`, `PATCH`
+- **Permission**: IsAuthenticated
+- **GET Response**: User object (see serializer)
+- **PUT/PATCH**: Update fields (partial updates allowed)
+
+### Upload Profile Picture
+- **URL**: `/api/user/upload-profile-picture/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated
+- **Content-Type**: `multipart/form-data`
+- **Form Data**: `profile_picture` (file)
+- **Response**: Updated user object
+
+### Upload Government ID
+- **URL**: `/api/user/upload-government-id/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated
+- **Content-Type**: `multipart/form-data`
+- **Form Data**: `gov_id` (file)
+- **Response**: Updated user object
+
+## Skills
+
+### List All Skills (public)
+- **URL**: `/api/skills/`
+- **Method**: `GET`
+- **Permission**: AllowAny
+- **Response**: Array of skill objects
+```json
+[{"id": 1, "skill_name": "Python"}, ...]
+```
+
+### Freelancer Skills (manage own skills)
+- **URL**: `/api/freelancer-skills/`
+- **Method**: `GET`, `POST`, `DELETE`
+- **Permission**: IsAuthenticated (freelancer only)
+- **POST Request Body**:
+```json
+{ "skill": 1 }
+```
+- **Response**: Created skill object
+
+### Skill Verification
+- **URL**: `/api/skill-verifications/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated (freelancer)
+- **Content-Type**: `multipart/form-data`
+- **Form Data**: `freelancer_skill` (id), `years_experience`, `reference_link`, `proof` (optional file)
+- **Response**: Created verification object (status pending)
+
+## Jobs
+
+### List/Create Jobs
+- **URL**: `/api/jobs/`
+- **Method**: `GET`, `POST`
+- **Permission**: GET – authenticated; POST – authenticated (client)
+- **Filters**: `?payment_type=single&approved=true&client=<uuid>`
+- **Search**: `?search=title`
+- **Ordering**: `?ordering=-created_at`
+- **POST Request Body** (single payment):
+```json
+{
+  "title": "Job title",
+  "description": "Job description",
+  "expected_outcome": "Outcome",
+  "required_skill_ids": [1,2],
+  "preferred_tone": "professional",
+  "budget": 1500,
+  "language": "English",
+  "deadline": "2026-12-31",
+  "payment_type": "single"
+}
+```
+- **POST Request Body** (milestone-based):
+```json
+{
+  ... // same as above, plus:
+  "milestones": [
+    {"title": "Design", "description": "UI design", "amount": 500, "sequence": 1},
+    {"title": "Development", "description": "Coding", "amount": 1000, "sequence": 2}
+  ]
+}
+```
+- **Response**: Created job object (approved defaults to false)
+
+### Retrieve/Update/Delete Job
+- **URL**: `/api/jobs/<uuid:job_id>/`
+- **Methods**: `GET`, `PUT`, `PATCH`, `DELETE`
+- **Permission**: Authenticated (owner or admin)
+
+## Job Matches
+
+### List Matches (for current user)
+- **URL**: `/api/matches/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated
+- **Response**: Array of matches (filtered by user role, excluding hired jobs)
+
+### Send Offer (client)
+- **URL**: `/api/matches/<uuid:match_id>/send_offer/`
+- **Method**: `POST`
+- **Permission**: Authenticated (client who owns the job)
+- **Response**: `{"status": "offer sent"}`
+
+### Respond to Offer (freelancer)
+- **URL**: `/api/matches/<uuid:match_id>/respond_to_offer/`
+- **Method**: `POST`
+- **Permission**: Authenticated (freelancer)
+- **Request Body**:
+```json
+{ "action": "accept" }  // or "reject"
+```
+- **Response**: `{"status": "offer accepted"}`
+
+## Hires
+
+### List Hires (for current user)
+- **URL**: `/api/hires/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated
+- **Response**: Array of hires (full nested objects)
+
+### Hire Freelancer (after offer accepted)
+- **URL**: `/api/hires/hire/`
+- **Method**: `POST`
+- **Permission**: Authenticated (client)
+- **Request Body**:
+```json
+{
+  "match_id": "uuid",
+  "freelancer_id": "uuid",
+  "job_id": "uuid"
+}
+```
+- **Response**: Created hire object (status 201)
+
+## Milestones
+
+### List/Create Milestones
+- **URL**: `/api/milestones/`
+- **Method**: `GET`, `POST`
+- **Permission**: IsAuthenticated
+- **Filters**: `?job=<uuid>&status=submitted&job__in=uuid,uuid`
+- **GET Response**: Array of milestone objects (with nested job and freelancer_name)
+
+### Upload Milestone Submission (freelancer)
+- **URL**: `/api/milestones/<uuid:milestone_id>/upload/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated (freelancer)
+- **Content-Type**: `multipart/form-data`
+- **Form Data**: `file` (ZIP), `message` (optional)
+- **Response**: Created milestone submission object (status 201)
+
+### Approve Milestone (client)
+- **URL**: `/api/milestones/<uuid:milestone_id>/approve/`
+- **Method**: `POST`
+- **Permission**: Authenticated (client)
+- **Response**: `{"message": "Milestone approved...", "transaction_id": "uuid"}`
+
+### Reject Milestone (client)
+- **URL**: `/api/milestones/<uuid:milestone_id>/reject/`
+- **Method**: `POST`
+- **Permission**: Authenticated (client)
+- **Request Body**:
+```json
+{ "reason": "Needs revision" }
+```
+- **Response**: `{"status": "rejected"}`
+
+## Final Submissions (Single Payment)
+
+### List Final Submissions
+- **URL**: `/api/final-submissions/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated
+- **Filters**: `?freelancer=<uuid>&hire=<uuid>&status=submitted`
+
+### Upload Final Submission (freelancer)
+- **URL**: `/api/hires/<uuid:hire_id>/upload-final/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated (freelancer)
+- **Content-Type**: `multipart/form-data`
+- **Form Data**: `file` (ZIP)
+- **Response**: Created/updated final submission object (status 200)
+
+### Approve Final Submission (client)
+- **URL**: `/api/submissions/<uuid:submission_id>/approve/`
+- **Method**: `POST`
+- **Permission**: Authenticated (client)
+- **Response**: `{"message": "Final work approved...", "transaction_id": "uuid"}`
+
+### Reject Final Submission (client)
+- **URL**: `/api/submissions/<uuid:submission_id>/reject/`
+- **Method**: `POST`
+- **Permission**: Authenticated (client)
+- **Request Body**:
+```json
+{ "reason": "Revisions needed" }
+```
+- **Response**: `{"status": "rejected"}`
+
+## Notifications
+
+### List Notifications (for current user)
+- **URL**: `/api/notifications/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated
+- **Response**: Array of notifications (ordered -created_at)
+
+### Mark Notification as Read
+- **URL**: `/api/notifications/<uuid:notification_id>/mark_read/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated
+- **Response**: `{"status": "marked read"}`
+
+### Delete Notification
+- **URL**: `/api/notifications/<uuid:notification_id>/delete/` (using DELETE method)
+- **Method**: `DELETE`
+- **Permission**: IsAuthenticated
+- **Response**: 204 No Content
+
+## Messages (Chat)
+
+### List Messages for a Hire
+- **URL**: `/api/messages/?hire=<uuid:hire_id>`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated
+- **Response**: Array of message objects
+
+### Send a Message
+- **URL**: `/api/messages/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated
+- **Request Body**:
+```json
+{
+  "hire": "uuid",
+  "content": "Hello!"
+}
+```
+- **Response**: Created message object (sender automatically set)
+
+WebSocket for real-time chat: `ws://<domain>/ws/chat/<hire_id>/?token=<token>`
+
+## Wallet & Transactions
+
+### Get Current User Balance (via /api/user/me/)
+- Already covered.
+
+### Transaction History
+- **URL**: `/api/transactions/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated
+- **Response**: Array of coin transactions (ordered -created_at)
+
+### Initiate Coin Purchase
+- **URL**: `/api/coins/initiate-purchase/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated
+- **Request Body**:
+```json
+{ "amount": 100 } // USD
+```
+- **Response**:
+```json
+{
+  "authorization_url": "https://paystack.com/pay/...",
+  "reference": "purchase-uuid"
+}
+```
+
+### Paystack Webhook (public)
+- **URL**: `/api/webhooks/paystack/`
+- **Method**: `POST`
+- **Permission**: AllowAny
+- Handles payment confirmation (should be called by Paystack only).
+
+## Withdrawals
+
+### Withdrawal Methods (CRUD)
+- **URL**: `/api/withdrawal-methods/`
+- **Methods**: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
+- **Permission**: IsAuthenticated
+- **POST/PUT Body** (bank):
+```json
+{
+  "type": "bank",
+  "label": "My Bank",
+  "bank_name": "Opay",
+  "account_number": "1234567890",
+  "account_name": "John Doe"
+}
+```
+- **POST/PUT Body** (crypto):
+```json
+{
+  "type": "crypto",
+  "label": "Binance",
+  "crypto_address": "0x123...",
+  "crypto_network": "BEP-20"
+}
+```
+
+### Withdrawal Requests
+- **URL**: `/api/withdrawal-requests/`
+- **Method**: `GET`, `POST`
+- **Permission**: IsAuthenticated
+- **POST Request Body**:
+```json
+{
+  "withdrawal_method": 1,  // ID of a saved method
+  "amount": 50
+}
+```
+- **Response**: Created withdrawal request (status pending)
+
+### Cancel Withdrawal Request
+- **URL**: `/api/withdrawal-requests/<uuid:id>/cancel/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated (owner)
+- **Response**: `{"status": "cancelled"}`
+
+## Contact / Support
+
+### User Contact Messages (CRUD)
+- **URL**: `/api/contact/`
+- **Method**: `GET`, `POST`
+- **Permission**: IsAuthenticated
+- **GET**: Returns user's own messages.
+- **POST Request Body**:
+```json
+{
+  "user_type": "freelancer", // or client
+  "name": "John",
+  "email": "john@example.com",
+  "subject": "Issue",
+  "message": "Details",
+  "category": "technical_support"
+}
+```
+- **Response**: Created message object (status: new)
+
+### Follow-up on a Ticket
+- **URL**: `/api/contact/<uuid:id>/follow-up/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated (owner)
+- **Request Body**:
+```json
+{ "follow_up": "My additional info" }
+```
+- **Response**: Updated message object
+
+## Admin Endpoints (all require admin role)
+
+### ID Verifications
+- **URL**: `/api/admin/id-verifications/`
+- **Method**: `GET`, `POST`
+- **GET**: List all users with unverified ID (including rejected)
+- **POST**: Approve/Reject
+```json
+{
+  "user_id": "uuid",
+  "action": "approve", // or "reject"
+  "reason": "optional rejection reason"
+}
+```
+- **Response**: `{"status": "success"}`
+
+### Job Approvals
+- **URL**: `/api/admin/job-approvals/`
+- **Method**: `GET`, `POST`
+- **GET**: List pending jobs (approved=False) with milestones
+- **POST**: Approve/Reject
+```json
+{
+  "job_id": "uuid",
+  "action": "approve" // or "reject"
+}
+```
+- **Response**: `{"status": "success"}`
+
+### Withdrawal Management
+- **URL**: `/api/admin/withdrawals/`
+- **Method**: `GET`, `POST`
+- **GET**: List all withdrawal requests (ordered -created_at)
+- **POST**: Process withdrawal
+```json
+{
+  "withdrawal_id": "uuid",
+  "action": "approve", // or "reject"
+  "reason": "rejection reason (required for reject)"
+}
+```
+- **Response**: `{"status": "success"}`
+
+### Skill Verifications (Admin)
+- **URL**: `/api/admin/skill-verifications/`
+- **Method**: `GET` (list, filter by status)
+- **Detail actions**:
+  - `POST /api/admin/skill-verifications/<id>/approve/`
+  - `POST /api/admin/skill-verifications/<id>/reject/`
+- **Response**: `{"status": "approved"}` etc.
+
+### Admin Badges Overview
+- **URL**: `/api/admin/badges-overview/`
+- **Method**: `GET`
+- **Response**: List of freelancers with badges, plus all badges
+
+### Update Main Badges (ladder)
+- **URL**: `/api/admin/update-main-badges/`
+- **Method**: `POST`
+- **Response**: `{"status": "ok"}`
+
+### Update Achievement Badges
+- **URL**: `/api/admin/update-achievement-badges/`
+- **Method**: `POST`
+- **Response**: `{"status": "ok"}`
+
+### Admin Contact (Support Tickets)
+- **URL**: `/api/admin/contact/`
+- **Method**: `GET`, `POST` (list, create)
+- **Detail actions**:
+  - `POST /api/admin/contact/<id>/respond/` – send response
+  - `POST /api/admin/contact/<id>/enable-user-response/` – allow user to reply
+  - `POST /api/admin/contact/<id>/resolve/` – mark resolved
+  - `POST /api/admin/contact/<id>/reopen/` – reopen
+
+### Admin Payment Methods
+- **URL**: `/api/admin/payment-methods/`
+- **Methods**: CRUD for platform payment configuration
+
+## Freelancer / Client Summaries
+
+### Freelancer Summary
+- **URL**: `/api/freelancer/summary/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated (freelancer)
+- **Response**:
+```json
+{
+  "total_earnings": 0,
+  "coin_balance": 0,
+  "active_projects": 0,
+  "completed_projects": 0,
+  "member_since": "2026-03-11",
+  "verified_status": "✅ Verified",
+  "communication_tone": "professional",
+  "preferred_language": "English",
+  "account_number": "TN12345678"
+}
+```
+
+### Client Summary
+- **URL**: `/api/client/summary/`
+- **Method**: `GET`
+- **Permission**: IsAuthenticated (client)
+- **Response**:
+```json
+{
+  "full_name": "John Doe",
+  "coin_balance": 0,
+  "total_spent": 0,
+  "active_projects": 0
+}
+```
+
+### Freelancer Public Profile
+- **URL**: `/api/freelancer/<uuid:freelancer_id>/profile/`
+- **Method**: `GET`
+- **Permission**: AllowAny
+- **Response**: Full public profile with skills and projects
+
+## Utilities
+
+### Toggle Availability (freelancer)
+- **URL**: `/api/freelancer/toggle-availability/`
+- **Method**: `POST`
+- **Permission**: IsAuthenticated (freelancer)
+- **Response**: `{"available": true}`
+
+---
+
+This documentation covers all core endpoints. For detailed request/response examples, refer to the source code.

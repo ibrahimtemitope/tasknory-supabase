@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+    <meta charset="UTF-8" />
+    <!-- Replace the existing viewport meta tag with this: -->
+    <!-- Replace the existing viewport meta tag with this: -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Chat - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/chat.css" />
+    <link rel="icon" href="../tasknory.jpg">
+    <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <link rel="canonical" href="https://tasknory.com/chat/chat.html/" />
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Add this right after the app-container opening div -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+      <!-- Navigation Sidebar -->
+      <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">Tasknory</div>
+          <button class="close-sidebar" id="closeSidebar">×</button>
+        </div>
+        <!-- Add this right after .sidebar-header -->
+<div class="theme-toggle-container">
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark Mode</span>
+    </button>
+</div>
+        <ul class="nav-menu" id="navMenu">
+          <!-- Navigation will be populated by JavaScript -->
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="main-content" id="mainContent">
+        <!-- Chat Container -->
+        <div class="chat-container">
+          <!-- Chat Header -->
+          <div class="chat-header">
+            <!-- hamburger now lives here -->
+            <!-- Update your existing menu toggle button in chat.html -->
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" type="button">
+  <span></span><span></span><span></span>
+</button>
+
+            <div class="chat-partner" id="chatPartner">
+              <div class="partner-avatar"></div>
+              <div class="partner-info">
+                <h3 id="partnerName">Loading…</h3>
+                <span id="partnerRole">…</span>
+              </div>
+            </div>
+
+            <button class="back-button" onclick="goBack()">← Back</button>
+          </div>
+          <!-- Messages Area -->
+          <div class="messages-container" id="messagesContainer">
+            <div class="messages" id="messages">
+              <!-- Messages will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Message Input -->
+          <form class="message-input-form" id="messageForm">
+            <div class="input-container">
+              <input
+                type="text"
+                id="messageInput"
+                placeholder="Type a message..."
+                autocomplete="off"
+                required
+              />
+              <button type="submit" class="send-button" id="sendButton">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      function goBack() {
+        if (history.length > 1) {
+          history.back();
+        } else {
+          // Redirect based on user role or to general dashboard
+          window.location.href = "../dashboard.html";
+        }
+      }
+    </script>
+    <script src="../assets/js/chat.js" type="module"></script>
+    <script>
+// Immediate theme toggle fix
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) {
+        console.error('Theme toggle not found');
+        return;
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const themeIcon = this.querySelector('.theme-icon');
+        const themeLabel = this.querySelector('.theme-label');
+        
+        if (currentTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.textContent = '☀️';
+            themeLabel.textContent = 'Light Mode';
+            localStorage.setItem('chat-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.textContent = '🌙';
+            themeLabel.textContent = 'Dark Mode';
+            localStorage.setItem('chat-theme', 'light');
+        }
+    });
+    
+    console.log('Manual theme toggle initialized');
+});
+</script>
+<script>
+// Android viewport fix
+function setViewportHeight() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', function() {
+    setViewportHeight();
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', function() {
+        setTimeout(setViewportHeight, 100);
+    });
+});
+
+// Prevent zoom on input focus for Android
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            window.scrollTo(0, 0);
+            document.body.scrollTop = 0;
+        });
+    });
+});
+</script>
+<script>
+// Debug script for Android menu issues
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded - checking menu button');
+    
+    const menuToggle = document.getElementById('menuToggle');
+    console.log('Menu toggle element:', menuToggle);
+    
+    if (menuToggle) {
+        console.log('Menu toggle styles:', window.getComputedStyle(menuToggle));
+        console.log('Menu toggle position:', menuToggle.getBoundingClientRect());
+        
+        // Immediate test event
+        menuToggle.addEventListener('click', function(e) {
+            console.log('IMMEDIATE CLICK - Menu button clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        
+        menuToggle.addEventListener('touchstart', function(e) {
+            console.log('IMMEDIATE TOUCH - Menu button touched!');
+            e.preventDefault();
+            e.stopPropagation();
+        }, { passive: false });
+    }
+    
+    // Test if any element is covering the button
+    const elementsAtPoint = document.elementsFromPoint(10, 10);
+    console.log('Elements at top-left corner:', elementsAtPoint);
+});
+</script>
+  </body>
+</html>
+

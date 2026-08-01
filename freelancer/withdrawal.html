@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdraw Funds - Tasknory</title>
+  <link rel="stylesheet" href="../assets/css/freelancer.css">
+  <link rel="stylesheet" href="../assets/css/freelancer/withdrawal.css?v=2">
+  <link rel="canonical" href="https://tasknory.com/freelancer/withdrawal.html/" />
+  <link rel="icon" href="../tasknory.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <h1 class="logo">Tasknory</h1>
+        </div>
+        <div class="theme-toggle-container">
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-label">Dark Mode</span>
+            </button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="skills.html" class="nav-link"><span class="label">Skills</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matched Jobs</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">Projects</span></a></li>
+            <li><a href="final-submissions.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="milestones.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link active"><span class="label">Withdraw Funds</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="header-content">
+                <h1>Withdraw</h1>
+                <div class="user-info">
+                    <span>Available Balance: <strong id="availableBalance">0 $</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <div class="withdrawal-container">
+                <!-- Payment Method Selection -->
+                <section class="card">
+                    <h2>Choose Withdrawal Method</h2>
+                    <div class="method-cards">
+                        <div class="method-card" id="bankMethod">
+                            <h3>🏦 Bank Transfer</h3>
+                            <p><strong>Available Worldwide</strong></p>
+                            <div class="fee-breakdown">
+                                <p><strong>Fee:</strong> 10% + country fee</p>
+                                <p><strong>Min:</strong> 10 $ | <strong>Max:</strong> 2,000 $</p>
+                                <p><strong>Processing:</strong> 1-3 business days</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Saved Payment Methods -->
+                <section class="card" id="savedMethodsSection" style="display: none;">
+                    <h2>Select Payment Method</h2>
+                    <div class="saved-methods" id="savedMethodsList"></div>
+                    <button class="btn btn-outline" id="addNewMethodBtn">＋ Add New Payment Method</button>
+                </section>
+
+                <!-- Add New Payment Method Form -->
+                <section class="card" id="newMethodForm" style="display: none;">
+                    <h2 id="methodFormTitle">Add Bank Account</h2>
+                    <form id="paymentMethodForm">
+                        <!-- Bank fields will be injected dynamically here -->
+                        <div id="bankFields"></div>
+                        
+                        <div class="form-group">
+                            <label for="methodLabel">Save as</label>
+                            <input type="text" id="methodLabel" class="form-input" placeholder="Main Bank Account" required>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelMethodBtn">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Payment Method</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Withdrawal Form -->
+                <section class="card" id="withdrawalForm" style="display: none;">
+                    <h2>Withdrawal Request</h2>
+                    <form id="withdrawalRequestForm">
+                        <div class="form-group">
+                            <label for="withdrawalAmount">Amount to Withdraw ($)</label>
+                            <input type="number" id="withdrawalAmount" class="form-input" min="10" max="2000" step="1" required>
+                            <div class="form-help" id="amountHelp">Enter amount between 10 - 2,000 $</div>
+                        </div>
+
+                        <!-- Amount Preview (USD only) -->
+                        <div class="amount-preview">
+                            <h4>Transaction Summary</h4>
+                            <div class="preview-line">
+                                <span>Withdrawal Amount:</span>
+                                <span id="previewAmount">0 $</span>
+                            </div>
+                            <div class="preview-line">
+                                <span>Processing Fee:</span>
+                                <span id="previewFee">0 $</span>
+                            </div>
+                            <div class="preview-line" style="border-top: 1px solid #ddd; padding-top: 0.5rem; font-weight: bold;">
+                                <span>Total Deducted:</span>
+                                <span id="previewTotal">0 $</span>
+                            </div>
+                            <div class="preview-line">
+                                <span>You Will Receive:</span>
+                                <span id="previewReceive">0 $</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelWithdrawal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="submitWithdrawal">💰 Request Withdrawal</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Terms & Conditions -->
+                <section class="terms-section">
+                    <h3>📋 Withdrawal Terms & Conditions</h3>
+                    <ul class="terms-list">
+                        <li>✅ All withdrawals require <strong>manual admin approval</strong> (1-3 business days)</li>
+                        <li>✅ You can <strong>cancel pending withdrawals</strong> anytime before admin processing</li>
+                        <li>✅ <strong>Bank transfers</strong> process in 24 hours after approval</li>
+                        <li>❌ <strong>Failed transactions</strong> due to wrong account details will incur a 10 $ reprocessing fee</li>
+                        <li>❌ <strong>Chargebacks or fraudulent activity</strong> will result in account suspension</li>
+                        <li>💡 <strong>Ensure your account details are correct</strong> before submitting</li>
+                        <li>💡 <strong>Contact support</strong> if your withdrawal is delayed beyond stated times</li>
+                    </ul>
+                </section>
+
+                <!-- Withdrawal History -->
+                <section class="card">
+                    <h2>Withdrawal History</h2>
+                    <div id="withdrawalHistory">
+                        <div class="loading">Loading withdrawal history...</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Withdrawal</h3>
+                <button class="close-modal" id="closeConfirmModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="confirmContent"></div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelConfirm">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmWithdrawal">Confirm Withdrawal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/withdrawals.js?v=2"></script>
+    <script type="module" src="../assets/js/freelancer.js"></script>
+</body>
+</html>

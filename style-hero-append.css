@@ -1,0 +1,290 @@
+/* ===========================================
+   TWO WAYS TO HIRE — Comparison section
+   =========================================== */
+.two-ways-section {
+  padding: var(--space-3xl) var(--space-lg);
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.two-ways-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.two-ways-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.way-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  transition: all var(--transition);
+}
+
+.way-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.way-self:hover { border-color: var(--primary-blue); }
+.way-concierge:hover { border-color: var(--accent-orange); }
+
+.way-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.way-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.way-self .way-icon { background: var(--gradient-primary); }
+.way-concierge .way-icon { background: var(--gradient-accent); }
+
+.way-meta h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.way-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.way-badge--concierge {
+  background: rgba(217, 119, 6, 0.1);
+  border-color: rgba(217, 119, 6, 0.25);
+  color: var(--accent-orange);
+}
+
+.way-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.way-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.way-step {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+}
+
+.way-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.way-step-text strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.way-step-text span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.way-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.way-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.way-feature i {
+  color: var(--success-green);
+  font-size: 0.75rem;
+}
+
+.way-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* VS Divider */
+.way-vs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 4rem;
+}
+
+.way-vs-line {
+  width: 2px;
+  height: 60px;
+  background: var(--border-color);
+}
+
+.way-vs-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .two-ways-grid { grid-template-columns: 1fr; }
+  .way-vs {
+    flex-direction: row;
+    padding-top: 0;
+    padding: 1rem 0;
+  }
+  .way-vs-line {
+    width: 60px;
+    height: 2px;
+  }
+}
+
+/* ===========================================
+   FLOW TABS — How It Works dual flow
+   =========================================== */
+.flow-tabs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flow-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.flow-tab:hover {
+  border-color: var(--primary-blue);
+  color: var(--text-primary);
+}
+
+.flow-tab.active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+}
+
+.flow-tab.active:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.flow-panel {
+  display: none;
+}
+
+.flow-panel.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .flow-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .flow-tab {
+    justify-content: center;
+  }
+}
+
+/* ===========================================
+   FINAL CTA — Three paths
+   =========================================== */
+.cta-actions--three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+}
+
+.cta-btn--call {
+  background: var(--gradient-accent);
+  color: white;
+  border: none;
+}
+
+.cta-btn--call:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .cta-actions--three {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}

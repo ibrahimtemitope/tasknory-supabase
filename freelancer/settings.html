@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freelancer Settings - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/freelancer.css" />
+    <link rel="stylesheet" href="../assets/css/freelancer/settings.css" />
+    <link rel="canonical" href="https://tasknory.com/freelancer/settings.html/" />
+    <link rel="icon" href="../tasknory.jpg">
+    <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+    <link
+      rel="stylesheet"
+      href="../assets/css/freelancer/settings-badges.css"
+    />
+  </head>
+  <body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <h1 class="logo">Tasknory</h1>
+        <!-- Remove the hamburger from sidebar for desktop -->
+      </div>
+
+      <div class="theme-toggle-container">
+        <button
+          id="themeToggle"
+          class="theme-toggle-btn"
+          aria-label="Toggle theme"
+        >
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Dark Mode</span>
+        </button>
+      </div>
+
+      <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="skills.html" class="nav-link"><span class="label">Skills</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matched Jobs</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">Projects</span></a></li>
+            <li><a href="final-submissions.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="milestones.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw Funds</span></a></li>
+            <li><a href="settings.html" class="nav-link active"><span class="label">Settings</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"></a><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+      <!-- ADD THIS MOBILE HEADER -->
+      <header class="top-header">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-content">
+          <h1>Settings</h1>
+        </div>
+      </header>
+
+      <div class="dashboard-container">
+        <!-- Your existing content here -->
+        <div class="settings-container">
+          <div class="settings-card">
+            <h1>Account Settings</h1>
+            <p>Manage your profile information and preferences</p>
+
+            <form id="freelancerSettingsForm" class="settings-form">
+              <!-- Profile Picture -->
+              <div class="form-group">
+                <label for="profile_picture">Profile Picture</label>
+                <div class="profile-pic-preview">
+                  <img
+                    id="profilePreview"
+                    src="../assets/images/default-avatar.png"
+                    alt="Profile Picture"
+                  />
+                </div>
+                <input
+                  type="file"
+                  id="profile_picture"
+                  name="profile_picture"
+                  class="form-file"
+                  accept=".jpg,.jpeg,.png"
+                />
+              </div>
+
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input
+                  type="text"
+                  id="full_name"
+                  name="full_name"
+                  class="form-input"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <!-- Email (read-only) -->
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  readonly
+                />
+                <small>Email cannot be changed</small>
+              </div>
+
+              <!-- Account Number (read-only) -->
+              <div class="form-group">
+                <label for="account_number">Account Number</label>
+                <input
+                  type="text"
+                  id="account_number"
+                  name="account_number"
+                  class="form-input"
+                  readonly
+                />
+                <small>Your unique TN account number for transfers</small>
+              </div>
+
+              <!-- Language -->
+              <div class="form-group">
+                <label for="language">Preferred Language</label>
+                <select id="language" name="language" class="form-select">
+                  <option value="English">English</option>
+                  <option value="Arabic">Arabic</option>
+                  <option value="French">French</option>
+                </select>
+              </div>
+
+              <!-- Communication Style -->
+              <div class="form-group">
+                <label for="tone">Communication Style</label>
+                <select id="tone" name="tone" class="form-select">
+                  <option value="professional">Professional</option>
+                  <option value="friendly">Friendly</option>
+                  <option value="direct">Direct</option>
+                  <option value="collaborative">Collaborative</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+  <label for="rate_begin">Minimum Rate ($)</label>
+  <input type="number" min="0" step="0.01" id="rate_begin" 
+         name="rate_begin" placeholder="e.g., 50 (optional)">
+  <small class="form-text">Minimum job budget you'll accept (leave empty for no minimum)</small>
+</div>
+
+<div class="form-group">
+  <label for="rate_end">Maximum Rate ($)</label>
+  <input type="number" min="0" step="0.01" id="rate_end" 
+         name="rate_end" placeholder="e.g., 500 (optional)">
+  <small class="form-text">Maximum job budget you'll consider (leave empty for no maximum)</small>
+</div>
+
+              <!-- ID Verification Section -->
+              <div class="verification-section">
+                <h3>🔐 Identity Verification</h3>
+
+                <div id="verificationStatus" class="verification-status">
+                  <!-- Status will be dynamically loaded -->
+                </div>
+
+                <div class="form-group">
+                  <label for="gov_id">Upload Government ID</label>
+                  <input
+                    type="file"
+                    id="gov_id"
+                    name="gov_id"
+                    class="form-file"
+                    accept=".jpg,.jpeg,.png,.pdf"
+                  />
+                  <small
+                    >Required to start working. Accepted: Passport, Driver's
+                    License, National ID</small
+                  >
+                </div>
+
+                <button id="uploadIdBtn" class="btn btn-primary">
+                  Upload ID
+                </button>
+              </div>
+
+              <!-- Badges -->
+              <div class="form-group">
+                <label>Badges</label>
+                <div id="badgesDisplay" class="badges-display"></div>
+              </div>
+
+              <!-- Save Button -->
+              <button type="submit" class="save-btn">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPLACE YOUR SCRIPT WITH THIS -->
+    <script>
+      // Mobile menu functionality - SIMPLE FIXED VERSION
+// Mobile menu functionality - IMPROVED VERSION
+document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("mobile-open");
+            mobileMenuBtn.classList.toggle("active");
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener("click", function (e) {
+            if (sidebar.classList.contains("mobile-open")) {
+                // Check if click is outside sidebar AND not on mobile menu button
+                if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove("mobile-open");
+                    mobileMenuBtn.classList.remove("active");
+                }
+            }
+        });
+
+        // Prevent sidebar clicks from closing the sidebar
+        sidebar.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+
+        // Close sidebar when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove("mobile-open");
+                mobileMenuBtn.classList.remove("active");
+            });
+        });
+    }
+});
+
+      // Theme Toggle Functionality
+      function initThemeToggle() {
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+        const themeLabel = themeToggle.querySelector(".theme-label");
+
+        // Check for saved theme or prefer-color-scheme
+        const savedTheme = localStorage.getItem("theme");
+        const prefersLight = window.matchMedia(
+          "(prefers-color-scheme: light)"
+        ).matches;
+
+        if (savedTheme === "light" || (!savedTheme && prefersLight)) {
+          document.documentElement.setAttribute("data-theme", "light");
+          themeIcon.textContent = "🌙";
+          themeLabel.textContent = "Dark Mode";
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeLabel.textContent = "Light Mode";
+        }
+
+        themeToggle.addEventListener("click", () => {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+
+          if (currentTheme === "light") {
+            document.documentElement.setAttribute("data-theme", "dark");
+            themeIcon.textContent = "☀️";
+            themeLabel.textContent = "Light Mode";
+            localStorage.setItem("theme", "dark");
+          } else {
+            document.documentElement.setAttribute("data-theme", "light");
+            themeIcon.textContent = "🌙";
+            themeLabel.textContent = "Dark Mode";
+            localStorage.setItem("theme", "light");
+          }
+        });
+      }
+
+      // Initialize theme toggle when DOM loads
+      document.addEventListener("DOMContentLoaded", () => {
+        initThemeToggle();
+      });
+    </script>
+    <script src="../assets/js/freelancer/settings.js" type="module"></script>
+  </body>
+</html>

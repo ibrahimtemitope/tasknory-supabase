@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /static/admin/
+Sitemap: https://tasknory.com/sitemap.xml
+Host: https://tasknory.com

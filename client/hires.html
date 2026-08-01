@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Hires - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/client.css" />
+    <link rel="canonical" href="https://tasknory.com/client/hires.html/" />
+    <link rel="icon" href="../tasknory.jpg">
+    <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+  </head>
+  <body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <h1 class="logo">Tasknory</h1>
+      </div>
+
+      <!-- Add this right after .sidebar-head -->
+<div class="theme-toggle-container">
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark Mode</span>
+    </button>
+</div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="book-call.html" class="nav-link"><span class="label">Book a Call</span></a></li>
+            <li><a href="my-calls.html" class="nav-link"><span class="label">My Calls</span></a></li>
+            <li><a href="post-job.html" class="nav-link"><span class="label">Post Job</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matches</span></a></li>
+            <li><a href="hires.html" class="nav-link active"><span class="label">My Hires</span></a></li>
+            <li><a href="milestone-reviews.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="pending-reviews.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="notifications.html" class="nav-link"><span class="label">Notifications</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw</span></a></li>
+            <li class="nav-item"><a href="#" class="nav-link logout"><span>Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+      <header class="top-header">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-content">
+          <h1>My Hires</h1>
+        </div>
+      </header>
+
+      <div class="dashboard-container">
+        <!-- Hires Section -->
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2>My Projects</h2>
+          </div>
+          <div id="hiresList">
+            <div class="loading">Loading your hires...</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Mobile menu functionality
+      document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const sidebar = document.getElementById("sidebar");
+  const mainWrapper = document.getElementById("mainWrapper");
+
+  if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      sidebar.classList.toggle("mobile-open");
+      mobileMenuBtn.classList.toggle("active");
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener("click", function (e) {
+      if (sidebar.classList.contains("mobile-open")) {
+        // Check if click is outside sidebar AND not on mobile menu button
+        if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+          sidebar.classList.remove("mobile-open");
+          mobileMenuBtn.classList.remove("active");
+        }
+      }
+    });
+
+    // Prevent sidebar clicks from closing the sidebar
+    sidebar.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+
+    // Close sidebar when clicking on nav links (optional)
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebar.classList.remove("mobile-open");
+        mobileMenuBtn.classList.remove("active");
+      });
+    });
+  }
+});
+    </script>
+
+    <script src="../assets/js/client.js" type="module"></script>
+  </body>
+</html>

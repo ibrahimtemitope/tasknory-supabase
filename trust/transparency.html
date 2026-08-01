@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Transparency & Metrics | Tasknory Trust Center</title>
+    <meta name="description" content="Tasknory's fee structure: clients pay zero fees. Freelancers pay 10% platform fee + bank fee on withdrawals only. Full transparency on costs.">
+    <link rel="icon" href="tasknory.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../tasknory.jpg">
+    <style>
+        :root {
+            --primary-blue: #4F46E5;
+            --success-green: #10B981;
+            --accent-orange: #D97706;
+            --accent-gold: #F59E0B;
+            --danger-red: #EF4444;
+            --purple: #7C3AED;
+            --neutral-50: #F9FAFB;
+            --neutral-100: #F3F4F6;
+            --neutral-200: #E5E7EB;
+            --neutral-300: #D1D5DB;
+            --neutral-400: #9CA3AF;
+            --neutral-500: #6B7280;
+            --neutral-600: #4B5563;
+            --neutral-700: #374151;
+            --neutral-800: #1F2937;
+            --neutral-900: #111827;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.25);
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--purple));
+            --gradient-success: linear-gradient(135deg, var(--success-green), #34D399);
+            --gradient-accent: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+            --gradient-dark: linear-gradient(135deg, var(--neutral-800), var(--neutral-900));
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+            --radius-sm: 0.5rem;
+            --radius: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-full: 9999px;
+            --transition: 300ms ease;
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --bg-primary: #0B0F19;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1F2937;
+            --text-primary: #F9FAFB;
+            --text-secondary: #D1D5DB;
+            --text-muted: #9CA3AF;
+            --border-color: #1F2937;
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.3);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.3);
+            --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== THEME TOGGLE ========== */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+        .theme-toggle:hover { transform: scale(1.1); border-color: var(--primary-blue); }
+        .theme-icon { position: absolute; transition: all var(--transition); font-size: 1.1rem; }
+        .theme-icon.sun { color: var(--accent-orange); }
+        .theme-icon.moon { color: var(--primary-blue); }
+        [data-theme="light"] .theme-icon.moon { opacity: 0; transform: scale(0); }
+        [data-theme="dark"] .theme-icon.sun { opacity: 0; transform: scale(0); }
+
+        /* ========== NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1001;
+            transition: all var(--transition);
+            height: 70px;
+        }
+        [data-theme="dark"] .main-nav {
+            background: rgba(11,15,25,0.95);
+            border-bottom-color: var(--border-color);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        .logo-mark {
+            width: 40px; height: 40px;
+            border-radius: var(--radius);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.25rem;
+        }
+        .logo-text h1 {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-subtitle { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color var(--transition);
+            position: relative;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover { color: var(--primary-blue); }
+        .nav-link.active { color: var(--primary-blue); }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 100%; height: 2px;
+            background: var(--gradient-primary);
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: var(--radius);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        .btn-secondary:hover { background: var(--bg-tertiary); }
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.3);
+        }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+        .btn-small { padding: 0.4rem 0.875rem; font-size: 0.8rem; }
+
+        /* ========== HERO ========== */
+        .transparency-hero {
+            padding: 70px 2rem 80px;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        .transparency-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -15%;
+            width: 600px; height: 600px;
+            background: var(--gradient-accent);
+            opacity: 0.06;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.9);
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .hero-badge i { color: var(--accent-orange); }
+        .transparency-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        .transparency-hero h1 span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        .hero-promise {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-promise-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .hero-promise-item i {
+            width: 36px; height: 36px;
+            border-radius: var(--radius-full);
+            background: rgba(245,158,11,0.2);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 80px 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== NO HIDDEN FEES BANNER ========== */
+        .no-fees-banner {
+            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(52,211,153,0.08));
+            border: 2px solid var(--success-green);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .no-fees-banner i {
+            font-size: 3rem;
+            color: var(--success-green);
+            margin-bottom: 1rem;
+        }
+        .no-fees-banner h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .no-fees-banner p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        .fee-items {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .fee-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .fee-item i { color: var(--danger-red); }
+
+        /* ========== FEE BREAKDOWN ========== */
+        .fee-breakdown {
+            background: var(--bg-secondary);
+            padding: 80px 2rem;
+        }
+        .fee-container { max-width: 1100px; margin: 0 auto; }
+        .fee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .fee-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+        }
+        .fee-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .fee-card h3 i { color: var(--primary-blue); }
+        .fee-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .fee-row:last-child { border-bottom: none; }
+        .fee-row.highlight {
+            background: rgba(79,70,229,0.03);
+            margin: 0 -2rem;
+            padding: 1rem 2rem;
+        }
+        .fee-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .fee-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        .fee-value {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-align: right;
+        }
+        .fee-value.free { color: var(--success-green); }
+        .fee-value.highlight { color: var(--primary-blue); font-size: 1.25rem; }
+        .fee-value.warning { color: var(--accent-orange); }
+
+        /* ========== CALCULATOR ========== */
+        .calculator-section { padding: 80px 2rem; }
+        .calculator-container { max-width: 900px; margin: 0 auto; }
+        .calculator-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        .calc-tab {
+            padding: 0.625rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .calc-tab.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+        .calc-tab:hover:not(.active) { border-color: var(--primary-blue); }
+        .calculator-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+        .calculator-card.active { display: block; }
+        .calculator-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .calculator-card > p {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        .calc-input-group { margin-bottom: 1.5rem; }
+        .calc-input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        .calc-input-wrapper { position: relative; }
+        .calc-input-wrapper span {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .calc-input-wrapper input, .calc-input-wrapper select {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 2.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: border-color var(--transition);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .calc-input-wrapper input:focus, .calc-input-wrapper select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        .calc-result {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .calc-result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+        }
+        .calc-result-row.total {
+            border-top: 2px solid var(--border-color);
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .calc-result-row .label { color: var(--text-secondary); }
+        .calc-result-row .value { font-weight: 600; }
+        .calc-result-row.total .value { color: var(--primary-blue); font-size: 1.25rem; }
+
+        /* ========== WITHDRAWAL FEES TABLE ========== */
+        .withdrawal-section {
+            background: var(--bg-secondary);
+            padding: 80px 2rem;
+        }
+        .withdrawal-container { max-width: 1000px; margin: 0 auto; }
+        .fees-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .fees-table th {
+            background: var(--neutral-800);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: left;
+        }
+        .fees-table td {
+            padding: 0.875rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+        .fees-table tr:last-child td { border-bottom: none; }
+        .fees-table tr:hover td { background: rgba(79,70,229,0.02); }
+        .fees-table .flag { font-size: 1.25rem; margin-right: 0.5rem; }
+        .fees-table .fee-type {
+            display: inline-flex;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .fee-type.flat { background: rgba(79,70,229,0.1); color: var(--primary-blue); }
+        .fee-type.tiered { background: rgba(217,119,6,0.1); color: var(--accent-orange); }
+        .fee-type.percentage { background: rgba(239,68,68,0.1); color: var(--danger-red); }
+        .fee-type.zero { background: rgba(16,185,129,0.1); color: var(--success-green); }
+        .fee-note {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ========== METRICS ========== */
+        .metrics-section { padding: 80px 2rem; }
+        .metrics-container { max-width: 1100px; margin: 0 auto; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .metric-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition);
+        }
+        .metric-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+        }
+        .metric-icon {
+            width: 60px; height: 60px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.25rem;
+        }
+        .metric-icon.blue { background: rgba(79,70,229,0.1); color: var(--primary-blue); }
+        .metric-icon.green { background: rgba(16,185,129,0.1); color: var(--success-green); }
+        .metric-icon.orange { background: rgba(217,119,6,0.1); color: var(--accent-orange); }
+        .metric-icon.purple { background: rgba(124,58,237,0.1); color: var(--purple); }
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .metric-card h4 {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .metric-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== OPEN STARTUP ========== */
+        .open-section {
+            background: var(--gradient-dark);
+            padding: 80px 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .open-container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+        .open-header { text-align: center; margin-bottom: 3rem; }
+        .open-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: white;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .open-header p {
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .open-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .open-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            color: white;
+        }
+        .open-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .open-card h4 i { color: var(--accent-orange); }
+        .open-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        /* ========== CTA ========== */
+        .cta-section {
+            padding: 80px 2rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--neutral-900);
+            color: white;
+            padding: 60px 2rem 30px;
+        }
+        .footer-inner { max-width: 1100px; margin: 0 auto; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-top: 1rem; line-height: 1.7; }
+        .footer-links h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 1.25rem; color: white; }
+        .footer-links a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.8rem; margin-bottom: 0.75rem; transition: color var(--transition); }
+        .footer-links a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+        .footer-badges { display: flex; gap: 1rem; align-items: center; }
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .transparency-hero h1 { font-size: 2rem; }
+            .fee-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .fees-table { font-size: 0.75rem; }
+            .fees-table th, .fees-table td { padding: 0.6rem 0.75rem; }
+            .calculator-tabs { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <div class="logo-mark">T</div>
+            <div class="logo-text">
+                <h1>Tasknory</h1>
+                <span class="logo-subtitle">LTD.</span>
+            </div>
+        </a>
+        <div class="nav-menu">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="vetting.html" class="nav-link">Vetting</a>
+            <a href="protection.html" class="nav-link">Protection</a>
+            <a href="transparency.html" class="nav-link active">Fees</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
+                <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
+            </button>
+            <a href="/client/signup.html" class="btn btn-secondary btn-small">For Clients</a>
+            <a href="/freelancer/signup.html" class="btn btn-primary btn-small">For Specialists</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="transparency-hero">
+    <div class="hero-container">
+        <div class="hero-badge">
+            <i class="fas fa-eye"></i>
+            <span>Tasknory Trust Center</span>
+        </div>
+        <h1>Fee <span>Transparency</span></h1>
+        <p class="hero-subtitle">
+            Clients pay zero fees. Freelancers pay a 10% platform fee + bank transfer fee only when withdrawing. No hidden charges. Ever.
+        </p>
+        <div class="hero-promise">
+            <div class="hero-promise-item"><i class="fas fa-check"></i> Zero Client Fees</div>
+            <div class="hero-promise-item"><i class="fas fa-check"></i> 10% Freelancer Withdrawal Fee</div>
+            <div class="hero-promise-item"><i class="fas fa-check"></i> Free to Post Jobs</div>
+        </div>
+    </div>
+</section>
+
+<!-- No Hidden Fees Banner -->
+<section class="section" style="padding-bottom: 0;">
+    <div class="no-fees-banner">
+        <i class="fas fa-stamp"></i>
+        <h3>Our "No Hidden Fees" Promise</h3>
+        <p>Clients pay only the project budget. Freelancers pay only when they withdraw. We will never add surprise charges, service fees, or processing markups.</p>
+        <div class="fee-items">
+            <div class="fee-item"><i class="fas fa-times-circle"></i> No client service fees</div>
+            <div class="fee-item"><i class="fas fa-times-circle"></i> No "connects" to apply</div>
+            <div class="fee-item"><i class="fas fa-times-circle"></i> No premium tier upsells</div>
+            <div class="fee-item"><i class="fas fa-times-circle"></i> No payment processing markup for clients</div>
+        </div>
+    </div>
+</section>
+
+<!-- Fee Breakdown -->
+<section class="fee-breakdown">
+    <div class="fee-container">
+        <div class="section-header">
+            <div class="section-badge"><i class="fas fa-receipt"></i> Fee Structure</div>
+            <h2 class="section-title">What You Pay (and What You Don't)</h2>
+            <p class="section-subtitle">Clear breakdown of every cost on the platform. Clients pay zero fees. Freelancers only pay when withdrawing.</p>
+        </div>
+        <div class="fee-grid">
+            <div class="fee-card">
+                <h3><i class="fas fa-user-tie"></i> Client Costs</h3>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Posting a Job</div>
+                        <div class="fee-desc">Unlimited job posts</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Specialist Matching</div>
+                        <div class="fee-desc">3 matched specialists per job</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Project Budget</div>
+                        <div class="fee-desc">You pay exactly the agreed budget</div>
+                    </div>
+                    <div class="fee-value free">NO EXTRA FEE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Rematch (if needed)</div>
+                        <div class="fee-desc">If first match fails delivery</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Dispute Resolution</div>
+                        <div class="fee-desc">Contact our support team</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Funding Wallet</div>
+                        <div class="fee-desc">Via Flutterwave</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+            </div>
+
+            <div class="fee-card">
+                <h3><i class="fas fa-code"></i> Freelancer Costs</h3>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Joining Tasknory</div>
+                        <div class="fee-desc">Sign up, create profile</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">ID Verification</div>
+                        <div class="fee-desc">Government ID upload</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Receiving Job Matches</div>
+                        <div class="fee-desc">Matched to relevant jobs</div>
+                    </div>
+                    <div class="fee-value free">FREE</div>
+                </div>
+                <div class="fee-row highlight">
+                    <div>
+                        <div class="fee-label">Withdrawal Fee</div>
+                        <div class="fee-desc">10% platform fee + bank transfer fee, deducted only when you withdraw</div>
+                    </div>
+                    <div class="fee-value highlight">10% + Bank Fee</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Minimum Withdrawal</div>
+                        <div class="fee-desc">Per withdrawal request</div>
+                    </div>
+                    <div class="fee-value">$10</div>
+                </div>
+                <div class="fee-row">
+                    <div>
+                        <div class="fee-label">Maximum Withdrawal</div>
+                        <div class="fee-desc">Per withdrawal request</div>
+                    </div>
+                    <div class="fee-value">$2,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fee Calculators -->
+<section class="calculator-section">
+    <div class="calculator-container">
+        <div class="section-header">
+            <div class="section-badge"><i class="fas fa-calculator"></i> Calculators</div>
+            <h2 class="section-title">Project & Earnings Calculators</h2>
+            <p class="section-subtitle">See exactly what clients pay and what freelancers receive. No surprises.</p>
+        </div>
+        <div class="calculator-tabs">
+            <button class="calc-tab active" onclick="switchCalc('client')">Client Cost</button>
+            <button class="calc-tab" onclick="switchCalc('freelancer')">Freelancer Earnings</button>
+        </div>
+
+        <!-- Client Calculator -->
+        <div class="calculator-card active" id="clientCalc">
+            <h3>Client Project Cost</h3>
+            <p>Enter your project budget to see the total cost. For clients, it's simple: you pay exactly the project budget. Zero extra fees.</p>
+            <div class="calc-input-group">
+                <label for="projectBudget">Project Budget</label>
+                <div class="calc-input-wrapper">
+                    <span>$</span>
+                    <input type="number" id="projectBudget" placeholder="e.g., 2500" min="50" oninput="calculateClientFee()">
+                </div>
+            </div>
+            <div class="calc-result" id="clientCalcResult" style="display: none;">
+                <div class="calc-result-row">
+                    <span class="label">Project Budget</span>
+                    <span class="value" id="budgetDisplay">$0</span>
+                </div>
+                <div class="calc-result-row">
+                    <span class="label">Tasknory Client Fee</span>
+                    <span class="value" style="color: var(--success-green);">$0</span>
+                </div>
+                <div class="calc-result-row total">
+                    <span class="label">Total You Pay</span>
+                    <span class="value" id="totalDisplay">$0</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">
+                    <i class="fas fa-info-circle"></i> You pay exactly the project budget. No service fees, no processing fees, no hidden charges.
+                </p>
+            </div>
+        </div>
+
+        <!-- Freelancer Calculator -->
+        <div class="calculator-card" id="freelancerCalc">
+            <h3>Freelancer Earnings Calculator</h3>
+            <p>Enter your project earnings and select your country to see what you'll receive after the 10% platform fee and bank transfer fee.</p>
+            <div class="calc-input-group">
+                <label for="earningsAmount">Project Earnings</label>
+                <div class="calc-input-wrapper">
+                    <span>$</span>
+                    <input type="number" id="earningsAmount" placeholder="e.g., 1000" min="10" oninput="calculateFreelancerFee()">
+                </div>
+            </div>
+            <div class="calc-input-group">
+                <label for="withdrawCountry">Your Country (for bank fee)</label>
+                <div class="calc-input-wrapper">
+                    <select id="withdrawCountry" onchange="calculateFreelancerFee()" style="padding-left: 1rem;">
+                        <option value="">-- Select Country --</option>
+                        <option value="NG">🇳🇬 Nigeria</option>
+                        <option value="GH">🇬🇭 Ghana</option>
+                        <option value="KE">🇰🇪 Kenya</option>
+                        <option value="ZA">🇿🇦 South Africa</option>
+                        <option value="UG">🇺🇬 Uganda</option>
+                        <option value="TZ">🇹🇿 Tanzania</option>
+                        <option value="RW">🇷🇼 Rwanda</option>
+                        <option value="ZM">🇿🇲 Zambia</option>
+                        <option value="CM">🇨🇲 Cameroon</option>
+                        <option value="CI">🇨🇮 Ivory Coast</option>
+                        <option value="SN">🇸🇳 Senegal</option>
+                        <option value="ET">🇪🇹 Ethiopia</option>
+                        <option value="MW">🇲🇼 Malawi</option>
+                        <option value="EG">🇪🇬 Egypt</option>
+                        <option value="US">🇺🇸 United States</option>
+                        <option value="GB">🇬🇧 United Kingdom</option>
+                        <option value="SEPA">🇪🇺 Eurozone (SEPA)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="calc-result" id="freelancerCalcResult" style="display: none;">
+                <div class="calc-result-row">
+                    <span class="label">Project Earnings</span>
+                    <span class="value" id="earningsDisplay">$0</span>
+                </div>
+                <div class="calc-result-row">
+                    <span class="label">Platform Fee (10%)</span>
+                    <span class="value" style="color: var(--danger-red);" id="platformFeeDisplay">-$0</span>
+                </div>
+                <div class="calc-result-row">
+                    <span class="label">Bank Transfer Fee</span>
+                    <span class="value" style="color: var(--danger-red);" id="bankFeeDisplay">-$0</span>
+                </div>
+                <div class="calc-result-row">
+                    <span class="label">Total Fees</span>
+                    <span class="value" style="color: var(--accent-orange);" id="totalFeesDisplay">$0</span>
+                </div>
+                <div class="calc-result-row total">
+                    <span class="label">You Receive</span>
+                    <span class="value" id="receiveDisplay">$0</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; text-align: center;" id="feeBreakdownNote"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Withdrawal Fees -->
+<section class="withdrawal-section">
+    <div class="withdrawal-container">
+        <div class="section-header">
+            <div class="section-badge"><i class="fas fa-university"></i> Withdrawals</div>
+            <h2 class="section-title">Bank Withdrawal Fees by Country</h2>
+            <p class="section-subtitle">Freelancers pay a 10% platform fee on every withdrawal PLUS a country-specific bank transfer fee. These are the exact bank fees deducted from your withdrawal.</p>
+        </div>
+        <table class="fees-table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Currency</th>
+                    <th>Fee Type</th>
+                    <th>Bank Fee</th>
+                    <th>Platform Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="flag">🇳🇬</span> Nigeria</td>
+                    <td>NGN</td>
+                    <td><span class="fee-type tiered">Tiered</span></td>
+                    <td>NGN 10 – 50 <span class="fee-note">(~$0.01 – $0.03)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇬🇭</span> Ghana</td>
+                    <td>GHS</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>GHS 10 <span class="fee-note">(~$0.83)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇰🇪</span> Kenya</td>
+                    <td>KES</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>KES 100 <span class="fee-note">(~$0.77)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇿🇦</span> South Africa</td>
+                    <td>ZAR</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>ZAR 10 <span class="fee-note">(~$0.55)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇺🇬</span> Uganda</td>
+                    <td>UGX</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>UGX 5,000 <span class="fee-note">(~$1.35)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇹🇿</span> Tanzania</td>
+                    <td>TZS</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>TZS 3,000 <span class="fee-note">(~$1.20)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇷🇼</span> Rwanda</td>
+                    <td>RWF</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>RWF 2,000 <span class="fee-note">(~$1.54)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇨🇲</span> Cameroon</td>
+                    <td>XAF</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>XAF 1,500 <span class="fee-note">(~$2.50)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇨🇮</span> Ivory Coast</td>
+                    <td>XOF</td>
+                    <td><span class="fee-type tiered">Tiered</span></td>
+                    <td>XOF 1,500 – 4,000 <span class="fee-note">(~$2.50 – $6.67)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇸🇳</span> Senegal</td>
+                    <td>XOF</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>XOF 1,500 <span class="fee-note">(~$2.50)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇪🇹</span> Ethiopia</td>
+                    <td>USD</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>$4.00</td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇲🇼</span> Malawi</td>
+                    <td>MWK</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>MWK 2,000 <span class="fee-note">(~$1.18)</span></td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇿🇲</span> Zambia</td>
+                    <td>ZMW</td>
+                    <td><span class="fee-type zero">Zero</span></td>
+                    <td>No bank fee</td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇪🇬</span> Egypt</td>
+                    <td>EGP</td>
+                    <td><span class="fee-type percentage">Percentage</span></td>
+                    <td>1% (min EGP 20, max EGP 25)</td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇺🇸</span> United States</td>
+                    <td>USD</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>$40.00</td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇬🇧</span> United Kingdom</td>
+                    <td>GBP</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>GBP 35</td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+                <tr>
+                    <td><span class="flag">🇪🇺</span> Eurozone (SEPA)</td>
+                    <td>EUR</td>
+                    <td><span class="fee-type flat">Flat</span></td>
+                    <td>EUR 35</td>
+                    <td><span class="fee-type percentage">10%</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="background: rgba(79,70,229,0.05); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem;">
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                <strong style="color: var(--primary-blue);"><i class="fas fa-calculator"></i> How the fee is calculated:</strong>
+            </p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.7;">
+                When you withdraw <strong>$100</strong>, the total deducted is: <strong>$100 + $10 (10% platform fee) + bank fee</strong>. The $10 platform fee and bank fee are deducted from your wallet balance. You receive $100 in your bank account.<br><br>
+                <strong>Other African countries (CF, TD, CG, GA, GW):</strong> XAF/XOF 1,500 flat bank fee (~$2.50) + 10% platform fee.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Open Startup -->
+<section class="open-section">
+    <div class="open-container">
+        <div class="open-header">
+            <h2>Operating in Public</h2>
+            <p>We're building Tasknory transparently. Here's what we commit to sharing publicly as we grow.</p>
+        </div>
+        <div class="open-grid">
+            <div class="open-card">
+                <h4><i class="fas fa-chart-bar"></i> Monthly Metrics</h4>
+                <p>Every month we publish: projects completed, average match time, specialist pass rate, and dispute resolution time.</p>
+            </div>
+            <div class="open-card">
+                <h4><i class="fas fa-dollar-sign"></i> Fee Changes</h4>
+                <p>If we ever change our fee structure, we commit to 90 days notice and grandfathering existing clients.</p>
+            </div>
+            <div class="open-card">
+                <h4><i class="fas fa-bug"></i> Incident Reports</h4>
+                <p>Any platform incident affecting payments or matches gets a public post-mortem within 48 hours.</p>
+            </div>
+            <div class="open-card">
+                <h4><i class="fas fa-road"></i> Public Roadmap</h4>
+                <p>Our product roadmap is viewable on Notion. Vote on features and see what we're building next.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Ready to Hire with Confidence?</h2>
+    <p>No hidden fees. No surprises. Just vetted African AI specialists and transparent pricing.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/client/signup.html" class="btn btn-primary">Post Your Job</a>
+        <a href="vetting.html" class="btn btn-secondary">See Vetting Process</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                    <div class="logo-mark">T</div>
+                    <div>
+                        <h3 style="font-family:var(--font-heading);font-size:1.25rem;">Tasknory</h3>
+                        <span style="font-size:0.7rem;color:rgba(255,255,255,0.5);">LTD.</span>
+                    </div>
+                </div>
+                <p>Marketplace for hiring pre-vetted African AI implementation specialists. CAC-registered, ethically operated.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Trust Center</h4>
+                <a href="vetting.html">How We Verify</a>
+                <a href="protection.html">Client Protection</a>
+                <a href="transparency.html">Fee Transparency</a>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <a href="index.html#case-studies">Case Studies</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="../legals.html">Legal</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="https://x.com/tasknory" target="_blank">X / Twitter</a>
+                <a href="https://linkedin.com/company/tasknory" target="_blank">LinkedIn</a>
+                <a href="mailto:hello@tasknory.com">hello@tasknory.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tasknory LTD. All rights reserved. CAC Registered.</p>
+            <div class="footer-badges">
+                <span class="footer-badge"><i class="fas fa-shield-alt"></i> SSL Secured</span>
+                <span class="footer-badge"><i class="fas fa-building"></i> CAC Reg.</span>
+                <span class="footer-badge"><i class="fas fa-newspaper"></i> Techpoint</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ========== THEME TOGGLE ==========
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+} else {
+    document.documentElement.setAttribute('data-theme', 'light');
+}
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// ========== CALCULATOR TAB SWITCHING ==========
+function switchCalc(type) {
+    document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.calculator-card').forEach(c => c.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById(type + 'Calc').classList.add('active');
+}
+
+// ========== CLIENT CALCULATOR ==========
+function calculateClientFee() {
+    const budget = parseFloat(document.getElementById('projectBudget').value) || 0;
+    const resultDiv = document.getElementById('clientCalcResult');
+    if (budget <= 0) {
+        resultDiv.style.display = 'none';
+        return;
+    }
+    resultDiv.style.display = 'block';
+    document.getElementById('budgetDisplay').textContent = '$' + budget.toLocaleString();
+    document.getElementById('totalDisplay').textContent = '$' + budget.toLocaleString();
+}
+
+// ========== FREELANCER CALCULATOR ==========
+const COUNTRY_FEE_INFO = {
+    'NG': { currency: 'NGN', type: 'tiered', tiers: [[5000, 10], [50000, 25], [Infinity, 50]], rate: 1600 },
+    'GH': { currency: 'GHS', type: 'flat', fee: 10, rate: 12 },
+    'KE': { currency: 'KES', type: 'flat', fee: 100, rate: 130 },
+    'UG': { currency: 'UGX', type: 'flat', fee: 5000, rate: 3700 },
+    'TZ': { currency: 'TZS', type: 'flat', fee: 3000, rate: 2500 },
+    'RW': { currency: 'RWF', type: 'flat', fee: 2000, rate: 1300 },
+    'ZA': { currency: 'ZAR', type: 'flat', fee: 10, rate: 18 },
+    'EG': { currency: 'EGP', type: 'percentage', rate: 0.01, min: 20, max: 25, rateUSD: 30 },
+    'ET': { currency: 'USD', type: 'flat', fee: 4, rate: 1 },
+    'CM': { currency: 'XAF', type: 'flat', fee: 1500, rate: 600 },
+    'CI': { currency: 'XOF', type: 'tiered', tiers: [[50000000, 1500], [Infinity, 4000]], rate: 600 },
+    'SN': { currency: 'XOF', type: 'flat', fee: 1500, rate: 600 },
+    'CF': { currency: 'XAF', type: 'flat', fee: 1500, rate: 600 },
+    'TD': { currency: 'XAF', type: 'flat', fee: 1500, rate: 600 },
+    'CG': { currency: 'XAF', type: 'flat', fee: 1500, rate: 600 },
+    'GA': { currency: 'XAF', type: 'flat', fee: 1500, rate: 600 },
+    'GW': { currency: 'XOF', type: 'flat', fee: 0, rate: 600 },
+    'MW': { currency: 'MWK', type: 'flat', fee: 2000, rate: 1700 },
+    'ZM': { currency: null, type: 'flat', fee: 0, rate: 1 },
+    'US': { currency: 'USD', type: 'flat', fee: 40, rate: 1 },
+    'GB': { currency: 'GBP', type: 'flat', fee: 35, rate: 0.78 },
+    'SEPA': { currency: 'EUR', type: 'flat', fee: 35, rate: 0.92 }
+};
+
+function calculateFreelancerFee() {
+    const amount = parseFloat(document.getElementById('earningsAmount').value) || 0;
+    const country = document.getElementById('withdrawCountry').value;
+    const resultDiv = document.getElementById('freelancerCalcResult');
+
+    if (amount <= 0 || !country) {
+        resultDiv.style.display = 'none';
+        return;
+    }
+
+    resultDiv.style.display = 'block';
+
+    const platformFee = amount * 0.10;
+    const info = COUNTRY_FEE_INFO[country];
+    let bankFeeUSD = 0;
+    let bankFeeLocal = 0;
+
+    if (info && info.currency) {
+        const amountLocal = amount * info.rate;
+        if (info.type === 'flat') {
+            bankFeeLocal = info.fee;
+        } else if (info.type === 'percentage') {
+            bankFeeLocal = amountLocal * info.rate;
+            if (info.min) bankFeeLocal = Math.max(bankFeeLocal, info.min);
+            if (info.max) bankFeeLocal = Math.min(bankFeeLocal, info.max);
+        } else if (info.type === 'tiered') {
+            for (let [threshold, fee] of info.tiers) {
+                if (amountLocal <= threshold) {
+                    bankFeeLocal = fee;
+                    break;
+                }
+            }
+        }
+        bankFeeUSD = bankFeeLocal / info.rate;
+    }
+
+    const totalFees = platformFee + bankFeeUSD;
+    const receive = amount;
+
+    document.getElementById('earningsDisplay').textContent = '$' + amount.toLocaleString();
+    document.getElementById('platformFeeDisplay').textContent = '-$' + platformFee.toFixed(2);
+    document.getElementById('bankFeeDisplay').textContent = '-$' + bankFeeUSD.toFixed(2) + (bankFeeLocal > 0 ? ' (' + info.currency + ' ' + bankFeeLocal.toLocaleString() + ')' : '');
+    document.getElementById('totalFeesDisplay').textContent = '$' + totalFees.toFixed(2);
+    document.getElementById('receiveDisplay').textContent = '$' + receive.toLocaleString();
+
+    const noteEl = document.getElementById('feeBreakdownNote');
+    const totalDeducted = amount + totalFees;
+    noteEl.innerHTML = '<i class="fas fa-info-circle"></i> Total deducted from your wallet: <strong>$' + totalDeducted.toFixed(2) + '</strong> ($' + amount.toLocaleString() + ' + $' + totalFees.toFixed(2) + ' in fees). You receive $' + receive.toLocaleString() + ' in your bank account.';
+}
+</script>
+<!-- ===== MOBILE MENU FIX FOR TRUST PAGES ===== -->
+<style>
+  /* Ensure nav menu hides on mobile, matches index.html */
+  @media (max-width: 768px) {
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--bg-primary);
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+      border-bottom: 1px solid var(--border-color);
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+      padding: 1rem;
+      gap: 0;
+    }
+    .nav-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-link {
+      width: 100%;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      margin: 0;
+    }
+    .nav-link:last-child {
+      border-bottom: none;
+    }
+    .nav-link::after {
+      display: none;
+    }
+    /* ensure menu-toggle button is visible in nav-actions */
+    .menu-toggle {
+      display: flex !important;
+    }
+    body {
+      padding-top: 70px;
+    }
+  }
+
+  /* Ensure menu-toggle button always exists with correct styling */
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    flex-shrink: 0;
+  }
+  .menu-toggle:hover {
+    transform: scale(1.05);
+    border-color: var(--primary-blue);
+  }
+</style>
+
+<script>
+  (function() {
+    // 1. Add missing menu toggle button if not present
+    const navActions = document.querySelector('.nav-actions');
+    if (navActions && !document.querySelector('.menu-toggle')) {
+      const menuToggle = document.createElement('button');
+      menuToggle.className = 'menu-toggle';
+      menuToggle.id = 'menuToggle';
+      menuToggle.setAttribute('aria-label', 'Menu');
+      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      // Insert before theme-toggle or at the end
+      const themeToggle = navActions.querySelector('.theme-toggle');
+      if (themeToggle) {
+        navActions.insertBefore(menuToggle, themeToggle);
+      } else {
+        navActions.appendChild(menuToggle);
+      }
+    }
+
+    // 2. Toggle functionality
+    const toggleBtn = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+      });
+
+      // Close menu when clicking a link
+      const navLinks = navMenu.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        });
+      });
+
+      // Close on outside click
+      document.addEventListener('click', function(event) {
+        if (navMenu.classList.contains('active') && 
+            !navMenu.contains(event.target) && 
+            !toggleBtn.contains(event.target)) {
+          navMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        }
+      });
+    }
+  })();
+</script>
+<!-- ===== RESPONSIVE NAV FIX (same as index.html) ===== -->
+<style>
+  /* Force hamburger to show on mobile */
+  @media (max-width: 768px) {
+    /* Hide nav menu initially */
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--bg-primary);
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+      border-bottom: 1px solid var(--border-color);
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+      padding: 1rem;
+      gap: 0;
+      display: flex !important;
+    }
+    .nav-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-link {
+      width: 100%;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      margin: 0;
+      font-size: 1rem;
+    }
+    .nav-link::after {
+      display: none;
+    }
+    /* Make menu toggle button visible */
+    .menu-toggle {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    /* Shrink logo text to prevent overflow */
+    .logo-text h1 {
+      font-size: 1rem !important;
+      white-space: nowrap;
+    }
+    .logo-subtitle {
+      font-size: 0.6rem !important;
+    }
+    .nav-logo {
+      gap: 0.5rem;
+    }
+    .logo-mark {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+    body {
+      padding-top: 70px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    // 1. Add missing hamburger button if not present
+    const navActions = document.querySelector('.nav-actions');
+    if (navActions && !document.querySelector('.menu-toggle')) {
+      const menuBtn = document.createElement('button');
+      menuBtn.className = 'menu-toggle';
+      menuBtn.id = 'menuToggle';
+      menuBtn.setAttribute('aria-label', 'Menu');
+      menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      // Insert before theme-toggle (if exists) or at the end
+      const themeToggle = navActions.querySelector('.theme-toggle');
+      if (themeToggle) {
+        navActions.insertBefore(menuBtn, themeToggle);
+      } else {
+        navActions.appendChild(menuBtn);
+      }
+    }
+
+    // 2. Toggle functionality
+    const toggleBtn = document.getElementById('menuToggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+      });
+
+      // Close menu when a nav link is clicked
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (navMenu.classList.contains('active') &&
+            !navMenu.contains(event.target) &&
+            !toggleBtn.contains(event.target)) {
+          navMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        }
+      });
+    }
+  })();
+</script>
+<style>
+/* ===== EXTRACTED NAVIGATION CSS FROM INDEX.HTML (style.css) ===== */
+/* This includes all nav, menu-toggle, theme-toggle, and responsive rules */
+
+/* Base navigation */
+.main-nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: rgba(var(--bg-primary-rgb), 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1001;
+  transition: all var(--transition);
+  height: 70px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 40px; height: 40px;
+  border-radius: var(--radius);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 1.25rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.logo-pulse {
+  position: absolute;
+  width: 100%; height: 100%;
+  border-radius: var(--radius);
+  background: var(--gradient-primary);
+  opacity: 0.5;
+  animation: pulse 2s infinite;
+}
+
+.logo-text h1 {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-subtitle {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-top: -2px;
+  line-height: 1;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color var(--transition);
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--gradient-primary);
+  transition: width var(--transition);
+}
+
+.nav-link:hover { color: var(--text-primary); }
+.nav-link:hover::after { width: 100%; }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--primary-blue);
+}
+
+.theme-icon {
+  position: absolute;
+  transition: all var(--transition);
+}
+.theme-icon.sun { color: var(--accent-orange); }
+.theme-icon.moon { color: var(--primary-blue); }
+[data-theme="light"] .theme-icon.moon { opacity: 0; transform: scale(0); }
+[data-theme="dark"] .theme-icon.sun { opacity: 0; transform: scale(0); }
+
+/* Menu toggle (hamburger) - hidden on desktop */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.menu-toggle:hover {
+  transform: scale(1.05);
+  border-color: var(--primary-blue);
+}
+
+/* Utility class for body scroll lock */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+@media (max-width: 768px) {
+  .main-nav {
+    height: 60px;
+    min-height: 60px;
+  }
+  .nav-container {
+    padding: 0 1rem;
+    height: 60px;
+  }
+  .nav-logo {
+    flex: 1;
+  }
+  .logo-mark {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  .logo-text h1 {
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+  .logo-subtitle {
+    font-size: 0.6rem;
+  }
+
+  /* Mobile menu panel */
+  .nav-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid var(--border-color);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: 1rem;
+    gap: 0;
+    display: flex !important;
+  }
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-link {
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin: 0;
+    font-size: 1rem;
+  }
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+  .nav-link::after {
+    display: none;
+  }
+  .nav-link:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-blue);
+  }
+
+  /* Show hamburger button */
+  .menu-toggle {
+    display: flex !important;
+    width: 40px;
+    height: 40px;
+    margin-left: 0.5rem;
+  }
+
+  /* Adjust action buttons */
+  .nav-actions {
+    gap: 0.5rem;
+  }
+  .nav-actions .btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    margin-left: 0.5rem;
+  }
+  body {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav {
+    height: 56px;
+    min-height: 56px;
+  }
+  .nav-container {
+    height: 56px;
+    padding: 0 0.75rem;
+  }
+  .nav-menu {
+    top: 56px;
+  }
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+  .logo-text h1 {
+    font-size: 1rem;
+  }
+  .logo-subtitle {
+    font-size: 0.55rem;
+  }
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
+  .nav-actions .btn {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.6rem;
+  }
+  .nav-actions .btn-small {
+    padding: 0.3rem 0.5rem;
+  }
+  .nav-actions {
+    gap: 0.35rem;
+  }
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    margin-left: 0.25rem;
+  }
+}
+
+/* Animation keyframes (needed for logo-pulse) */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* Dark theme overrides (already handled by existing variables, but ensure consistency) */
+[data-theme="dark"] .main-nav {
+  background: rgba(11,15,25,0.95);
+  border-bottom-color: var(--border-color);
+}
+@media (max-width: 768px) {
+  .nav-actions .btn {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.6rem !important;
+    white-space: nowrap;
+  }
+  
+  .nav-actions .btn-small {
+    padding: 0.3rem 0.5rem !important;
+  }
+  
+  .nav-actions {
+    gap: 0.35rem;
+  }
+  
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    margin-left: 0.25rem;
+  }
+  
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    margin-left: 0.25rem;
+  }
+}
+/* FORCE SPACING ON MOBILE NAV – FIXES PACKED LINKS */
+@media (max-width: 768px) {
+  /* Make sure nav-menu is column and links have bottom margin */
+  .nav-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .nav-link {
+    display: block !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    margin-bottom: 4px !important;
+    border-bottom: 1px solid var(--border-color, #e5e7eb) !important;
+  }
+  /* Add space between the two action buttons */
+  .nav-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+  }
+  /* Ensure buttons don't stick */
+  .nav-actions .btn {
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+  /* If the buttons are stacked inside nav-menu on mobile, separate them */
+  .nav-menu .nav-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+  }
+  .nav-menu .nav-actions .btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+.nav-menu .nav-link {
+    margin-right: 10px;
+}
+
+/* ===== FIX FOR LARGE FEES TABLE (transparency.html) ===== */
+/* Make table horizontally scrollable on small screens */
+.withdrawal-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+.fees-table {
+  min-width: 600px;
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Ensure table cells have proper padding and text wrapping */
+.fees-table th,
+.fees-table td {
+  padding: 1rem 1rem;
+  white-space: nowrap;
+}
+
+/* Allow some columns to wrap on very small screens */
+@media (max-width: 640px) {
+  .withdrawal-container {
+    margin: 0 -0.75rem;
+    padding: 0 0.75rem;
+  }
+  .fees-table {
+    min-width: 500px;
+  }
+  .fees-table th,
+  .fees-table td {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  .fees-table .flag {
+    font-size: 1rem;
+  }
+  .fee-note {
+    display: inline-block;
+    margin-left: 0.25rem;
+    font-size: 0.65rem;
+  }
+  .fee-type {
+    padding: 0.15rem 0.4rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* Optional: Improve readability of the fee breakdown note below table */
+.withdrawal-container > div:last-child {
+  overflow-x: auto;
+  font-size: 0.85rem;
+  padding: 1rem;
+}
+
+@media (max-width: 480px) {
+  .fees-table th,
+  .fees-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  .fees-table .flag {
+    font-size: 0.9rem;
+    margin-right: 0.2rem;
+  }
+  .fee-note {
+    display: none; /* hide detailed note on very small screens to save space */
+  }
+}
+
+.nav-logo {
+    display: none;
+}
+</style>
+
+</body>
+</html>

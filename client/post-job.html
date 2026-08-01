@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Job - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/client.css" />
+    <link rel="stylesheet" href="../assets/css/client/client-job-post.css">
+    <link rel="canonical" href="https://tasknory.com/client/post-job.html/" />
+    <link rel="icon" href="../tasknory.jpg">
+    <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+  </head>
+  <body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <h1 class="logo">Tasknory</h1>
+      </div>
+
+      <!-- Add this right after .sidebar-head -->
+      <div class="theme-toggle-container">
+        <button
+          id="themeToggle"
+          class="theme-toggle-btn"
+          aria-label="Toggle theme"
+        >
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Dark Mode</span>
+        </button>
+      </div>
+
+      <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="book-call.html" class="nav-link"><span class="label">Book a Call</span></a></li>
+            <li><a href="my-calls.html" class="nav-link"><span class="label">My Calls</span></a></li>
+            <li><a href="post-job.html" class="nav-link active"><span class="label">Post Job</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matches</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">My Hires</span></a></li>
+            <li><a href="milestone-reviews.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="pending-reviews.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="notifications.html" class="nav-link"><span class="label">Notifications</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw</span></a></li>
+            <li class="nav-item"><a href="#" class="nav-link logout"><span>Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+      <header class="top-header">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-content">
+          <h1>Post a New Job</h1>
+          <div class="user-info">
+            <span>Find freelancers</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-container">
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2>Create Job Listing</h2>
+          </div>
+
+          <form id="jobPostForm" class="job-form">
+            <div class="form-group">
+              <label for="title">Job Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                class="form-input"
+                placeholder="Enter job title"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-textarea"
+                placeholder="Describe the job requirements and responsibilities"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="expected_outcome">Expected Outcome</label>
+              <textarea
+                id="expected_outcome"
+                name="expected_outcome"
+                class="form-textarea"
+                placeholder="What should be delivered upon completion?"
+              ></textarea>
+            </div>
+
+            <!-- NEW: Payment Type Selection -->
+            <div class="form-group">
+              <label for="payment_type">Payment Type</label>
+              <select
+                id="payment_type"
+                name="payment_type"
+                class="form-select"
+                required
+              >
+                <option value="single">Single Payment (Full amount upon completion)</option>
+                <option value="milestone">Milestone Payments (Pay as work progresses)</option>
+              </select>
+            </div>
+
+            <!-- NEW: Milestones Section (Hidden by default) -->
+            <div id="milestonesSection" class="milestones-section" style="display: none;">
+              <div class="form-group">
+                <label>Project Milestones</label>
+                <div class="form-help">
+                  Break down your project into milestones. Payment will be released as each milestone is completed and approved.
+                </div>
+                
+                <div id="milestonesContainer">
+                  <!-- Milestones will be added here dynamically -->
+                </div>
+                
+                <button type="button" id="addMilestoneBtn" class="btn-secondary">
+                  + Add Another Milestone
+                </button>
+              </div>
+              
+              <div class="form-group">
+                <label>Total Milestone Budget</label>
+                <input
+                  type="number"
+                  id="totalMilestoneBudget"
+                  class="form-input"
+                  readonly
+                  placeholder="0.00"
+                />
+                <small class="form-help">This will be the total amount held for all milestones</small>
+              </div>
+            </div>
+
+            <!-- Existing Budget Field (Hidden when milestones selected) -->
+            <div class="form-group" id="singleBudgetGroup">
+              <label for="budget">Budget (USD)</label>
+              <input
+                type="number"
+                id="budget"
+                name="budget"
+                class="form-input"
+                placeholder="Enter budget amount"
+                min="0"
+                step="0.01"
+              
+              />
+            </div>
+
+<div class="form-group">
+  <label for="requiredSkills">Required Skills</label>
+  <div id="skillsCheckboxContainer" class="skills-checkbox-container">
+    <!-- Skills will be populated by JavaScript -->
+  </div>
+  <input type="hidden" id="requiredSkillsSelect" name="required_skills" value="">
+  <div class="form-help">
+    Select all skills required for this job
+  </div>
+</div>
+
+            <div class="form-group">
+              <label for="preferred_tone">Preferred Communication Tone</label>
+              <select
+                id="preferred_tone"
+                name="preferred_tone"
+                class="form-select"
+                required
+              >
+                <option value="">Select preferred tone</option>
+                <option value="professional">Professional</option>
+                <option value="friendly">Friendly</option>
+                <option value="direct">Direct</option>
+                <option value="collaborative">Collaborative</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="deadline">Deadline</label>
+              <input
+                type="date"
+                id="deadline"
+                name="deadline"
+                class="form-input"
+                required
+              />
+              <small class="form-help">Select the job completion date</small>
+            </div>
+
+            <div class="form-group">
+              <label for="language">Language</label>
+              <select id="language" name="language" class="form-select">
+                <option value="English">English</option>
+                <option value="Arabic">Arabic</option>
+                <option value="French">French</option>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Submit Job for Approval
+            </button>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Mobile menu functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const sidebar = document.getElementById("sidebar");
+  const mainWrapper = document.getElementById("mainWrapper");
+
+  if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      sidebar.classList.toggle("mobile-open");
+      mobileMenuBtn.classList.toggle("active");
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener("click", function (e) {
+      if (sidebar.classList.contains("mobile-open")) {
+        // Check if click is outside sidebar AND not on mobile menu button
+        if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+          sidebar.classList.remove("mobile-open");
+          mobileMenuBtn.classList.remove("active");
+        }
+      }
+    });
+
+    // Prevent sidebar clicks from closing the sidebar
+    sidebar.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+
+    // Close sidebar when clicking on nav links (optional)
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebar.classList.remove("mobile-open");
+        mobileMenuBtn.classList.remove("active");
+      });
+    });
+  }
+
+        // NEW: Milestone Management
+        initMilestoneManagement();
+      });
+
+      // NEW: Milestone Management Functions
+      function initMilestoneManagement() {
+        const paymentTypeSelect = document.getElementById('payment_type');
+        const milestonesSection = document.getElementById('milestonesSection');
+        const singleBudgetGroup = document.getElementById('singleBudgetGroup');
+        const addMilestoneBtn = document.getElementById('addMilestoneBtn');
+        const milestonesContainer = document.getElementById('milestonesContainer');
+
+        // Toggle between single payment and milestones
+        paymentTypeSelect.addEventListener('change', function() {
+          if (this.value === 'milestone') {
+            milestonesSection.style.display = 'block';
+            singleBudgetGroup.style.display = 'none';
+            // Add first milestone if none exists
+            if (milestonesContainer.children.length === 0) {
+              addMilestone();
+            }
+          } else {
+            milestonesSection.style.display = 'none';
+            singleBudgetGroup.style.display = 'block';
+          }
+        });
+
+        // Add milestone button
+        addMilestoneBtn.addEventListener('click', addMilestone);
+
+        // Initialize with first milestone if milestones is selected
+        if (paymentTypeSelect.value === 'milestone') {
+          milestonesSection.style.display = 'block';
+          singleBudgetGroup.style.display = 'none';
+          addMilestone();
+        }
+      }
+
+      function addMilestone() {
+        const milestonesContainer = document.getElementById('milestonesContainer');
+        const milestoneCount = milestonesContainer.children.length + 1;
+        const milestoneId = `milestone_${Date.now()}`;
+
+        const milestoneHTML = `
+          <div class="milestone-item" data-id="${milestoneId}">
+            <div class="milestone-header">
+              <h4>Milestone ${milestoneCount}</h4>
+              <button type="button" class="remove-milestone-btn" onclick="removeMilestone('${milestoneId}')">×</button>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Title</label>
+                <input 
+                  type="text" 
+                  class="form-input milestone-title" 
+                  placeholder="e.g., Design Phase, Development, Testing" 
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label>Amount (USD)</label>
+                <input 
+                  type="number" 
+                  class="form-input milestone-amount" 
+                  placeholder="0.00" 
+                  min="0" 
+                  step="0.01" 
+                  required
+                  onchange="updateTotalBudget()"
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Description & Deliverables</label>
+              <textarea 
+                class="form-textarea milestone-description" 
+                placeholder="Describe what needs to be delivered in this milestone..."
+                required
+              ></textarea>
+            </div>
+          </div>
+        `;
+
+        milestonesContainer.insertAdjacentHTML('beforeend', milestoneHTML);
+        updateTotalBudget();
+      }
+
+      function removeMilestone(milestoneId) {
+        const milestoneElement = document.querySelector(`[data-id="${milestoneId}"]`);
+        if (milestoneElement) {
+          milestoneElement.remove();
+          // Renumber remaining milestones
+          const milestones = document.querySelectorAll('.milestone-item');
+          milestones.forEach((milestone, index) => {
+            const header = milestone.querySelector('h4');
+            header.textContent = `Milestone ${index + 1}`;
+          });
+          updateTotalBudget();
+        }
+      }
+
+      function updateTotalBudget() {
+        const amountInputs = document.querySelectorAll('.milestone-amount');
+        let total = 0;
+        
+        amountInputs.forEach(input => {
+          const value = parseFloat(input.value) || 0;
+          total += value;
+        });
+
+        document.getElementById('totalMilestoneBudget').value = total.toFixed(2);
+      }
+
+      // Helper function to collect milestone data before form submission
+      function collectMilestonesData() {
+        const milestones = [];
+        const milestoneElements = document.querySelectorAll('.milestone-item');
+        
+        milestoneElements.forEach((element, index) => {
+          const title = element.querySelector('.milestone-title').value;
+          const amount = element.querySelector('.milestone-amount').value;
+          const description = element.querySelector('.milestone-description').value;
+          
+          if (title && amount && description) {
+            milestones.push({
+              sequence: index + 1,
+              title: title,
+              amount: parseFloat(amount),
+              description: description
+            });
+          }
+        });
+        
+        return milestones;
+      }
+
+      
+    </script>
+
+    <script src="../assets/js/client.js" type="module"></script>
+  </body>
+</html>

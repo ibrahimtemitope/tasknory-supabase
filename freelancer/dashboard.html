@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freelancer Dashboard - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/freelancer.css" />
+    <link rel='stylesheet' href='../assets/css/freelancer/deadline.css' />
+    <link rel="canonical" href="https://tasknory.com/freelancer/dashboard.html/" />
+    <link rel="icon" href="../tasknory.jpg">
+    <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+    <style>
+      /* ┌─────────────────────────────────────────────────┐
+   │            PROFILE BADGE STYLES                 │
+   └─────────────────────────────────────────────────┘ */
+
+      /* Profile Name with Badge */
+      #userName {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        flex-wrap: wrap !important;
+      }
+
+      /* Main Badge in Profile */
+      #userName .main-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 4px 8px !important;
+        border-radius: 20px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        white-space: nowrap !important;
+        /* background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important; */
+        background: black;
+        /* A sand/beige to a warm taupe */
+        color: #fafafa !important;
+        /* Deep, rich black for text */
+        border: 2px solid red !important;
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3) !important;
+        min-width: 60px !important;
+        height: 24px !important;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) !important;
+        text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.5); /* For light backgrounds */
+        position: relative !important;
+        z-index: 1 !important;
+      }
+
+      /* Special Badge in Profile */
+      #userName .special-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 4px 8px !important;
+        border-radius: 20px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        white-space: nowrap !important;
+        background: linear-gradient(
+          135deg,
+          #00d4aa 0%,
+          #008b8b 100%
+        ) !important;
+        color: #ffffff !important;
+        border: 2px solid #00ced1 !important;
+        box-shadow: 0 2px 8px rgba(0, 212, 170, 0.3) !important;
+        min-width: 60px !important;
+        height: 24px !important;
+      }
+
+      /* Achievement Badge in Profile */
+      #userName .achievement-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 4px 8px !important;
+        border-radius: 20px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        white-space: nowrap !important;
+        background: linear-gradient(
+          135deg,
+          #ff6b6b 0%,
+          #dc143c 100%
+        ) !important;
+        color: #ffffff !important;
+        border: 2px solid #ff4500 !important;
+        box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3) !important;
+        min-width: 60px !important;
+        height: 24px !important;
+      }
+
+      /* Multiple badges in profile */
+      #userName .main-badge + .special-badge,
+      #userName .main-badge + .achievement-badge,
+      #userName .special-badge + .achievement-badge {
+        margin-left: 6px !important;
+      }
+
+      /* Hover effects for profile badges */
+      #userName .main-badge:hover,
+      #userName .special-badge:hover,
+      #userName .achievement-badge:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        transition: all 0.3s ease !important;
+      }
+
+      /* Responsive profile badges */
+      @media (max-width: 768px) {
+        #userName {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 8px !important;
+        }
+
+        #userName .main-badge,
+        #userName .special-badge,
+        #userName .achievement-badge {
+          font-size: 10px !important;
+          padding: 3px 6px !important;
+          min-width: 55px !important;
+          height: 22px !important;
+        }
+      }
+
+      /* Animation for profile badges */
+      @keyframes profileBadgePop {
+        0% {
+          transform: scale(0) !important;
+          opacity: 0 !important;
+        }
+        80% {
+          transform: scale(1.1) !important;
+        }
+        100% {
+          transform: scale(1) !important;
+          opacity: 1 !important;
+        }
+      }
+
+      #userName .main-badge,
+      #userName .special-badge,
+      #userName .achievement-badge {
+        animation: profileBadgePop 0.5s ease-out !important;
+      }
+
+      /* Tooltip for profile badges */
+      #userName .main-badge:hover::after,
+      #userName .special-badge:hover::after,
+      #userName .achievement-badge:hover::after {
+        content: attr(data-tooltip) !important;
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        color: white !important;
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+        font-size: 10px !important;
+        white-space: nowrap !important;
+        z-index: 1000 !important;
+        margin-bottom: 8px !important;
+        pointer-events: none !important;
+      }
+
+      #userName .main-badge:hover::before,
+      #userName .special-badge:hover::before,
+      #userName .achievement-badge:hover::before {
+        content: "" !important;
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        border: 5px solid transparent !important;
+        border-top-color: rgba(0, 0, 0, 0.8) !important;
+        margin-bottom: -2px !important;
+        pointer-events: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <h1 class="logo">Tasknory</h1>
+        <!-- Remove the hamburger from sidebar for desktop -->
+      </div>
+      <!-- Add this right after .sidebar-head -->
+      <div class="theme-toggle-container">
+        <button
+          id="themeToggle"
+          class="theme-toggle-btn"
+          aria-label="Toggle theme"
+        >
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Dark Mode</span>
+        </button>
+      </div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link active"><span class="label">Dashboard</span></a></li>
+            <li><a href="skills.html" class="nav-link"><span class="label">Skills</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matched Jobs</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">Projects</span></a></li>
+            <li><a href="final-submissions.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="milestones.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw Funds</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"></a><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+      <!-- ADD THIS MOBILE HEADER -->
+      <header class="top-header">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-content">
+          <h1>Dashboard</h1>
+        </div>
+      </header>
+
+      <div class="dashboard-container">
+
+        <!-- Verification Banner -->
+<div id="verificationBanner" class="verification-banner" style="display: none;">
+  <div class="banner-content">
+    <div class="banner-icon">🔐</div>
+    <div class="banner-text">
+      <h3>Complete ID Verification</h3>
+      <p>Verify your identity to unlock all platform features</p>
+    </div>
+    <button id="verifyNowBtn" class="banner-btn">Verify Now</button>
+  </div>
+  <button id="closeBanner" class="banner-close">&times;</button>
+</div>
+
+        <!-- Your existing content here -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number $" id="totalEarnings">0 $</div>
+            <div class="stat-label">Total Earnings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number $" id="coinBalance">0 $</div>
+            <div class="stat-label">Available Balance</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="activeProjects">0</div>
+            <div class="stat-label">Active Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="completedProjects">0</div>
+            <div class="stat-label">Completed Projects</div>
+          </div>
+        </div>
+
+        <div class="profile-info">
+          <h3>Profile Information</h3>
+          <p><strong>Full Name:</strong> <span id="userName">-</span></p>
+          <p><strong>Member Since:</strong> <span id="memberSince">-</span></p>
+          <p>
+            <strong>Verification Status:</strong>
+            <span id="verifiedStatus">-</span>
+          </p>
+          <p>
+            <strong>Communication Tone:</strong>
+            <span id="communicationTone">-</span>
+          </p>
+          <p>
+            <strong>Preferred Language:</strong>
+            <span id="preferredLanguage">-</span>
+          </p>
+        </div>
+
+        <section class="dashboard-section">
+          <div class="section-header">
+<!-- Replace your current availability text with this toggle -->
+<div class="availability-toggle-container">
+  <label class="toggle-label">Available for Work:</label>
+  <label class="toggle-switch">
+    <input type="checkbox" id="availabilityToggle" />
+    <span class="toggle-slider"></span>
+  </label>
+</div>
+          </div>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2>Matched Jobs</h2>
+          </div>
+          <div id="matchedJobs">
+            <div class="loading">Loading matched jobs...</div>
+          </div>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2>My Projects</h2>
+          </div>
+          <div class="hires-grid" id="hiresList"></div>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2>Notifications</h2>
+          </div>
+          <div class="notifications-list">
+            <ul id="notificationsList"></ul>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- REPLACE YOUR SCRIPT WITH THIS -->
+    <script>
+      // Mobile menu functionality - SIMPLE FIXED VERSION
+// Mobile menu functionality - IMPROVED VERSION
+document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("mobile-open");
+            mobileMenuBtn.classList.toggle("active");
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener("click", function (e) {
+            if (sidebar.classList.contains("mobile-open")) {
+                // Check if click is outside sidebar AND not on mobile menu button
+                if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove("mobile-open");
+                    mobileMenuBtn.classList.remove("active");
+                }
+            }
+        });
+
+        // Prevent sidebar clicks from closing the sidebar
+        sidebar.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+
+        // Close sidebar when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove("mobile-open");
+                mobileMenuBtn.classList.remove("active");
+            });
+        });
+    }
+});
+    </script>
+
+    <script src="../assets/js/freelancer.js" type="module"></script>
+  </body>
+</html>

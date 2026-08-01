@@ -1,0 +1,512 @@
+/* =========================
+   CLIENT AUTH STYLES
+   ========================= */
+
+/* CSS Variables */
+:root {
+    /* Brand Colors - Strict adherence */
+    --brand-blue: #2563eb;
+    --brand-yellow: #f59e0b;
+    --brand-white: #ffffff;
+    
+    /* Light Theme */
+    --bg-primary: var(--brand-white);
+    --bg-secondary: #f8fafc;
+    --bg-gradient: linear-gradient(135deg, var(--brand-blue) 0%, #764ba2 100%);
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --error-color: #ef4444;
+    --success-color: #10b981;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-gradient: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    --error-color: #f87171;
+    --success-color: #34d399;
+}
+
+/* =========================
+   BASE STYLES
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: background 0.3s ease;
+}
+
+/* =========================
+   AUTH CONTAINERS
+   ========================= */
+.signup-container,
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    background: var(--bg-primary);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+/* =========================
+   AUTH HEADER
+   ========================= */
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+/* =========================
+   AUTH FORM
+   ========================= */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form Groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.form-input,
+.form-select {
+    padding: 0.875rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* Submit Button */
+.submit-btn {
+    background: var(--brand-blue);
+    color: var(--brand-white);
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--brand-white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* =========================
+   AUTH FOOTER
+   ========================= */
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.auth-footer p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.auth-link {
+    color: var(--brand-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.forgot-password a {
+    color: var(--brand-blue);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* =========================
+   ALERT STYLES
+   ========================= */
+.alert {
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: none;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border: 1px solid;
+    animation: slideDown 0.3s ease;
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-card {
+    animation: fadeIn 0.6s ease;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+@media (max-width: 640px) {
+    .auth-card {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .auth-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .auth-header p {
+        font-size: 1rem;
+    }
+    
+    .form-input,
+    .form-select {
+        padding: 0.75rem;
+    }
+    
+    .submit-btn {
+        padding: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+    
+    .auth-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .auth-form {
+        gap: 1.25rem;
+    }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+    .auth-card,
+    .submit-btn,
+    .alert {
+        animation: none;
+        transition: none;
+    }
+}
+
+.form-input:focus-visible,
+.form-select:focus-visible,
+.submit-btn:focus-visible {
+    outline: 2px solid var(--brand-blue);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .auth-card {
+        border-width: 2px;
+    }
+    
+    .form-input,
+    .form-select {
+        border-width: 2px;
+    }
+}
+
+/* =========================
+   PASSWORD STRENGTH INDICATOR
+   ========================= */
+.password-strength {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.strength-weak { color: var(--error-color); }
+.strength-medium { color: var(--warning-color); }
+.strength-strong { color: var(--success-color); }
+
+.password-requirements {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.requirement.met {
+    color: var(--success-color);
+}
+
+.requirement.unmet {
+    color: var(--text-muted);
+}
+
+.requirement-icon {
+    font-size: 0.875rem;
+}
+
+/* =========================
+   BUSINESS NAME FIELD ANIMATION
+   ========================= */
+#businessNameGroup {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+#businessNameGroup[style*="display: block"] {
+    animation: slideDown 0.3s ease;
+}
+
+/* =========================
+   UTILITY CLASSES
+   ========================= */
+.text-center {
+    text-align: center;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* =========================
+   DARK THEME ENHANCEMENTS
+   ========================= */
+[data-theme="dark"] .auth-card {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .submit-btn:hover:not(:disabled) {
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* =========================
+   FORM VALIDATION STYLES
+   ========================= */
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--error-color);
+}
+
+.form-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--success-color);
+}
+
+/* Loading state for form */
+.auth-form.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.auth-form.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--brand-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}

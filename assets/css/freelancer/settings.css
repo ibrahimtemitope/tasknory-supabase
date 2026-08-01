@@ -1,0 +1,491 @@
+/* =========================
+   FREELANCER SETTINGS STYLES
+   ========================= */
+
+/* Settings Container */
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Settings Card */
+.settings-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.settings-card h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.settings-card p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Settings Form */
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form Groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.form-input,
+.form-select,
+.form-file {
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-file:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input:read-only {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+.form-file {
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.form-file::file-selector-button {
+    background: var(--brand-blue);
+    color: var(--brand-white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-file::file-selector-button:hover {
+    background: #1d4ed8;
+}
+
+/* Small text for hints */
+.form-group small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+/* Profile Picture Preview */
+.profile-pic-preview {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.profile-pic-preview img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--brand-blue);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.profile-pic-preview img:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Verification Section */
+.verification-section {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.verification-section h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Verification Status */
+.verification-status {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.status-approved {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: var(--success-color);
+}
+
+.status-pending {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: var(--warning-color);
+}
+
+.status-rejected {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: var(--error-color);
+}
+
+.status-required {
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.3);
+    color: var(--brand-blue);
+}
+
+.status-icon {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+}
+
+.status-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.verification-status small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--brand-blue);
+    color: var(--brand-white);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-yellow));
+    color: var(--brand-white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Badges Display */
+.badges-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    min-height: 60px;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.settings-card {
+    animation: slideIn 0.5s ease;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+@media (max-width: 768px) {
+    .settings-container {
+        padding: 0 1rem;
+    }
+    
+    .settings-card {
+        padding: 1.5rem;
+    }
+    
+    .settings-card h1 {
+        font-size: 1.75rem;
+    }
+    
+    .profile-pic-preview img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .verification-section {
+        padding: 1rem;
+    }
+    
+    .badges-display {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-card {
+        padding: 1rem;
+    }
+    
+    .settings-card h1 {
+        font-size: 1.5rem;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-file {
+        padding: 0.75rem;
+    }
+    
+    .profile-pic-preview img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .save-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+    .settings-card,
+    .save-btn,
+    .btn-primary {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Focus styles */
+.form-input:focus-visible,
+.form-select:focus-visible,
+.form-file:focus-visible,
+.btn:focus-visible,
+.save-btn:focus-visible {
+    outline: 2px solid var(--brand-blue);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .settings-card,
+    .verification-section,
+    .verification-status {
+        border-width: 2px;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-file {
+        border-width: 2px;
+    }
+}
+
+/* =========================
+   FORM VALIDATION STYLES
+   ========================= */
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--error-color);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.form-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--success-color);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+/* Loading state for file uploads */
+.form-file.uploading::file-selector-button {
+    background: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Success state for saved settings */
+.settings-form.saved .save-btn {
+    background: var(--success-color);
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Rate Range Fields Styling */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input[type="number"]::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form-group .form-text {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Optional: Add rate range container for side-by-side layout on larger screens */
+@media (min-width: 768px) {
+  .rate-range-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Optional: Validation styling */
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+}
+
+.form-group .error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+  display: none;
+}
+
+.form-group input:invalid:not(:placeholder-shown) ~ .error-message {
+  display: block;
+}

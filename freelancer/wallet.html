@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet - Tasknory</title>
+  <link rel="stylesheet" href="../assets/css/client.css">
+  <link rel="stylesheet" href="../assets/css/client/client-wallet.css">
+  <link rel="canonical" href="https://tasknory.com/freelancer/wallet.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="../tasknory.jpg">
+  <style>
+    .wallet-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    .wallet-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .transactions-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    
+    .transactions-table th,
+    .transactions-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .transactions-table th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+    }
+    
+    .amount-positive {
+      color: #10b981;
+      font-weight: bold;
+    }
+    
+    .amount-negative {
+      color: #ef4444;
+      font-weight: bold;
+    }
+    
+    .transfer-section {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+    
+    .recipient-preview {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: 5px;
+      margin: 1rem 0;
+      display: none;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Currency Selector Styles */
+    .country-detection {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .detected-country {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .detected-country .flag {
+      font-size: 1.5rem;
+    }
+
+    .detected-country .badge {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .detected-country .badge.manual {
+      background: #f59e0b;
+    }
+
+    .warning-box, .currency-warning-box {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #92400e;
+    }
+
+    .warning-box .warning-icon,
+    .currency-warning-box .warning-icon {
+      font-size: 1.2rem;
+    }
+
+    .currency-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .currency-option {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .currency-option:hover {
+      border-color: var(--primary-color);
+    }
+
+    .currency-option.recommended {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .currency-option input[type="radio"] {
+      margin-right: 0.75rem;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-color);
+    }
+
+    .currency-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .currency-code {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .currency-name {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .recommended-badge {
+      background: #10b981;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      margin-top: 0.25rem;
+      width: fit-content;
+    }
+
+    .currency-warning {
+      color: #ef4444;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+
+    .country-override {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .toggle-override {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .toggle-override:hover {
+      color: var(--primary-hover);
+    }
+
+    .country-select-container {
+      margin-top: 0.75rem;
+    }
+
+    .conversion-note {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .amount-preview {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+
+    .amount-preview p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .amount-preview strong {
+      color: var(--primary-color);
+    }
+
+    /* Modal improvements */
+    .modal-content {
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      background: var(--card-bg);
+      z-index: 10;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 600px) {
+      .modal-content {
+        margin: 10px;
+        max-height: 95vh;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <h1 class="logo">Tasknory</h1>
+        </div>
+
+        <div class="theme-toggle-container">
+          <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-label">Dark Mode</span>
+          </button>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="skills.html" class="nav-link"><span class="label">Skills</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matched Jobs</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">Projects</span></a></li>
+            <li><a href="final-submissions.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="milestones.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link active"><span class="label">Wallet</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw Funds</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"></a><span class="label">Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-content">
+                <h1>My Wallet</h1>
+                <div class="user-info">
+                    <span>Manage your Funds</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2>Wallet Overview</h2>
+                </div>
+
+                <!-- Wallet Stats -->
+                <div class="wallet-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="availableBalance">0 $</div>
+                        <div class="stat-label">Available Balance</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number" id="accountNumber">-</div>
+                        <div class="stat-label">Account Number</div>
+                    </div>
+                </div>
+
+                <!-- Buy Coins Section -->
+                <div class="card">
+                    <h3>Add Funds</h3>
+                    <p>Need more funds to post jobs?</p>
+                    <button class="btn btn-success" id="buyCoinsBtn">
+  💰 Add Funds
+</button>
+                </div>
+
+                <!-- Transaction History -->
+                <div class="card">
+                    <h3>Transaction History</h3>
+                    <div id="transactionsList">
+                        <div class="loading">Loading transactions...</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Buy Coins Modal -->
+<div id="buyCoinsModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Add Funds</h3>
+      <button class="close-modal" id="closeBuyCoinsModal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="buyCoinsForm">
+        
+        <!-- Currency Selector Container -->
+        <div id="currencySelectorContainer">
+          <div class="loading">Loading payment options...</div>
+        </div>
+
+        <div class="form-group">
+          <label for="coinAmount">Amount (USD)</label>
+          <input 
+            type="number" 
+            id="coinAmount" 
+            class="form-input" 
+            placeholder="Enter amount in USD"
+            min="1"
+            step="1"
+            required
+          >
+          <small class="form-help">Enter the amount in USD. We'll convert to your selected currency.</small>
+        </div>
+
+        <div class="amount-preview">
+          <p><strong>Total:</strong> <span id="totalCost">0</span> <span id="currencyLabel">USD</span></p>
+          <div id="conversionInfo"></div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelBuyCoins">Cancel</button>
+          <button type="submit" class="btn btn-primary">Continue to Payment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("mobile-open");
+            mobileMenuBtn.classList.toggle("active");
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener("click", function(e) {
+            if (sidebar.classList.contains("mobile-open")) {
+                if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove("mobile-open");
+                    mobileMenuBtn.classList.remove("active");
+                }
+            }
+        });
+
+        sidebar.addEventListener("click", function(e) {
+            e.stopPropagation();
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove("mobile-open");
+                mobileMenuBtn.classList.remove("active");
+            });
+        });
+    }
+
+    const modal = document.getElementById('reviewModal');
+    const closeModal = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelReview');
+
+    if (closeModal) {
+        closeModal.addEventListener('click', () => modal.style.display = 'none');
+    }
+    
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => modal.style.display = 'none');
+    }
+
+    if (modal) {
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+});
+    </script>
+    
+    <script type="module" src="../assets/js/wallet.js?v=3"></script>
+    <!-- <script type="module" src="../assets/js/client.js"></script> -->
+</body>
+</html>

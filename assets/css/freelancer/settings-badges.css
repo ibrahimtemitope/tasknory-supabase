@@ -1,0 +1,279 @@
+/* =========================
+   FREELANCER BADGES STYLES
+   ========================= */
+
+/* Badge Base Styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+}
+
+/* Main Badge - Gold Tier */
+.main-badge {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #7c2d12;
+    border-color: #fbbf24;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Special Badge - Blue/Purple Tier */
+.special-badge {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: var(--brand-white);
+    border-color: #818cf8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Achievement Badge - Green Tier */
+.achievement-badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: var(--brand-white);
+    border-color: #34d399;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Tasknory Choice Badge - Premium */
+.badge[class*="choice"] {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: var(--brand-white);
+    border-color: #fbbf24;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Tasknory Partner Badge - Elite */
+.badge[class*="partner"] {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    color: var(--brand-white);
+    border-color: #8b5cf6;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Badge Hover Effects */
+.badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Badge Animations */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px #fbbf24, 0 0 10px #fbbf24;
+    }
+    to {
+        box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24;
+    }
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: -200% 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Badge with Icons */
+.badge.with-icon {
+    padding-left: 0.75rem;
+    gap: 0.5rem;
+}
+
+.badge-icon {
+    font-size: 0.9rem;
+}
+
+/* Badge Sizes */
+.badge-small {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+}
+
+.badge-large {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+}
+
+/* Badge Tooltips */
+.badge {
+    position: relative;
+    cursor: help;
+}
+
+.badge:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 0.5rem;
+    pointer-events: none;
+}
+
+.badge:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8);
+    margin-bottom: -2px;
+    pointer-events: none;
+}
+
+/* Badge Collection Layout */
+.badges-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.badge-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.badge-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Empty Badges State */
+.badges-display:empty::before {
+    content: "No badges yet. Complete projects to earn badges!";
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+    grid-column: 1 / -1;
+}
+
+/* Badge Progress (for upcoming badges) */
+.badge-upcoming {
+    opacity: 0.6;
+    filter: grayscale(0.3);
+    position: relative;
+}
+
+.badge-upcoming::after {
+    content: '🔒';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.7rem;
+    background: var(--bg-primary);
+    border-radius: 50%;
+    padding: 2px;
+}
+
+/* Badge Achievement Animation */
+@keyframes badgeUnlock {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.badge.new-badge {
+    animation: badgeUnlock 0.6s ease-out;
+}
+
+/* Responsive Badges */
+@media (max-width: 768px) {
+    .badges-display {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
+    
+    .badge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .badge-large {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .badges-display {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Badge Rarity Indicators */
+.badge.rare {
+    border-style: double;
+    border-width: 3px;
+}
+
+.badge.epic {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.badge.legendary {
+    background: linear-gradient(135deg, #ffd700, #ff6b6b, #4ecdc4);
+    background-size: 200% 200%;
+    animation: gradientShift 2s ease infinite;
+    border-color: #ffd700;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}

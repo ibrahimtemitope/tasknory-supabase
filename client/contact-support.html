@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Support - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/client.css" />
+    <link rel="canonical" href="https://tasknory.com/client/contact-support.html/" />
+    <link rel="icon" href="../tasknory.jpg">
+    <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+  </head>
+  <body>
+    <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <h1 class="logo">Tasknory</h1>
+      </div>
+
+      <!-- Add this right after .sidebar-head -->
+<div class="theme-toggle-container">
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark Mode</span>
+    </button>
+</div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="book-call.html" class="nav-link"><span class="label">Book a Call</span></a></li>
+            <li><a href="my-calls.html" class="nav-link"><span class="label">My Calls</span></a></li>
+            <li><a href="post-job.html" class="nav-link"><span class="label">Post Job</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matches</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">My Hires</span></a></li>
+            <li><a href="milestone-reviews.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="pending-reviews.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="notifications.html" class="nav-link"><span class="label">Notifications</span></a></li>
+            <li><a href="contact-support.html" class="nav-link active"><span class="label">Support</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw</span></a></li>
+            <li class="nav-item"><a href="#" class="nav-link logout"><span>Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+    <div class="main-wrapper" id="mainWrapper">
+      <header class="top-header">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-content">
+          <h1>Support</h1>
+        </div>
+      </header>
+
+      <div class="dashboard-container"></div>
+
+        <section class="dashboard-section">
+            <main style="padding-top: 80px;">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>Client Support</h1>
+                <p>We're here to help you find the perfect freelancers</p>
+            </div>
+
+            <div class="alert" id="alertMessage"></div>
+
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Send a Support Request</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="category">Issue Category *</label>
+                            <select id="category" name="category" class="form-select" required>
+                                <option value="">Select a category</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message *</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Please describe your issue in detail..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            Send Support Request
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact History -->
+                <div class="contact-history-section">
+                    <h2>Your Support History</h2>
+                    <div id="contactHistory">
+                        <div class="empty-state">
+                            <p>No support requests yet</p>
+                            <p>Your support history will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        </section>
+      </div>
+    </div>
+    <script>
+      // Mobile menu functionality
+      document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const sidebar = document.getElementById("sidebar");
+  const mainWrapper = document.getElementById("mainWrapper");
+
+  if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      sidebar.classList.toggle("mobile-open");
+      mobileMenuBtn.classList.toggle("active");
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener("click", function (e) {
+      if (sidebar.classList.contains("mobile-open")) {
+        // Check if click is outside sidebar AND not on mobile menu button
+        if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+          sidebar.classList.remove("mobile-open");
+          mobileMenuBtn.classList.remove("active");
+        }
+      }
+    });
+
+    // Prevent sidebar clicks from closing the sidebar
+    sidebar.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+
+    // Close sidebar when clicking on nav links (optional)
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebar.classList.remove("mobile-open");
+        mobileMenuBtn.classList.remove("active");
+      });
+    });
+  }
+});
+    </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script type="module">
+    import { submitContactForm, getUserContactHistory, submitUserFollowUp, CONTACT_CATEGORIES } from '../assets/js/contact-shared.js';
+    import { apiRequest } from '../assets/js/api.js';
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        await initializePage();
+        document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
+        await loadContactHistory();
+    });
+
+    async function initializePage() {
+        const categorySelect = document.getElementById('category');
+        CONTACT_CATEGORIES.client.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.value;
+            option.textContent = category.label;
+            categorySelect.appendChild(option);
+        });
+
+        try {
+            const user = await apiRequest('/api/user/me/');
+            document.getElementById('name').value = user.full_name || '';
+            document.getElementById('email').value = user.email || '';
+        } catch (e) {
+            // Not logged in – fields remain empty
+        }
+    }
+
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        const alertMessage = document.getElementById('alertMessage');
+        const formData = new FormData(e.target);
+
+        if (!validateForm(formData)) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        try {
+            await submitContactForm(formData, 'client');
+            showAlert('Support request sent successfully! We\'ll get back to you within 24 hours.', 'success');
+            e.target.reset();
+            await loadContactHistory();
+        } catch (error) {
+            console.error('Error sending message:', error);
+            showAlert('Sorry, there was an error sending your message. Please try again.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Support Request';
+        }
+    }
+
+    function validateForm(formData) {
+        const name = formData.get('name').trim();
+        const email = formData.get('email').trim();
+        const subject = formData.get('subject').trim();
+        const message = formData.get('message').trim();
+        const category = formData.get('category');
+
+        if (!name || !email || !subject || !message || !category) {
+            showAlert('Please fill in all required fields.', 'error');
+            return false;
+        }
+        if (!isValidEmail(email)) {
+            showAlert('Please enter a valid email address.', 'error');
+            return false;
+        }
+        return true;
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function showAlert(message, type) {
+        const alertMessage = document.getElementById('alertMessage');
+        alertMessage.textContent = message;
+        alertMessage.className = `alert alert-${type}`;
+        alertMessage.style.display = 'block';
+        setTimeout(() => alertMessage.style.display = 'none', 5000);
+    }
+
+    async function loadContactHistory() {
+        const historyContainer = document.getElementById('contactHistory');
+        const tickets = await getUserContactHistory();
+
+        if (tickets.length === 0) {
+            historyContainer.innerHTML = `
+                <div class="empty-state">
+                    <p>No support requests yet</p>
+                    <p>Your support history will appear here</p>
+                </div>
+            `;
+            return;
+        }
+
+        historyContainer.innerHTML = tickets.map(ticket => `
+            <div class="ticket-item">
+                <div class="ticket-header">
+                    <h3 class="ticket-subject">${escapeHtml(ticket.subject)}</h3>
+                    <div class="ticket-meta">
+                        <span class="status-badge status-${ticket.status}">${ticket.status.replace('_', ' ')}</span>
+                        <span>${new Date(ticket.created_at).toLocaleDateString()}</span>
+                    </div>
+                </div>
+                <div class="ticket-message">
+                    <strong>Your message:</strong>
+                    <p>${escapeHtml(ticket.message)}</p>
+                </div>
+                ${ticket.admin_response ? `
+                    <div class="ticket-response">
+                        <div class="response-label">Admin Response:</div>
+                        <p>${escapeHtml(ticket.admin_response)}</p>
+                        <small>Responded on ${new Date(ticket.admin_responded_at).toLocaleString()}</small>
+                    </div>
+                ` : ''}
+                ${ticket.allow_user_response ? `
+                    <div class="follow-up-form">
+                        <div class="response-label">Admin is waiting for your response:</div>
+                        <form onsubmit="handleFollowUp(event, '${ticket.id}')">
+                            <textarea class="form-textarea" name="followUp" placeholder="Type your response here..." required></textarea>
+                            <button type="submit" class="submit-btn" style="margin-top: 0.5rem;">Send Response</button>
+                        </form>
+                    </div>
+                ` : ''}
+                ${ticket.user_follow_up ? `
+                    <div class="ticket-response">
+                        <div class="response-label">Your follow-up:</div>
+                        <p>${escapeHtml(ticket.user_follow_up)}</p>
+                        <small>Sent on ${new Date(ticket.user_follow_up_at).toLocaleString()}</small>
+                    </div>
+                ` : ''}
+            </div>
+        `).join('');
+    }
+
+    window.handleFollowUp = async function(e, ticketId) {
+        e.preventDefault();
+        const form = e.target;
+        const followUpMessage = form.followUp.value.trim();
+        if (!followUpMessage) {
+            showAlert('Please enter your response.', 'error');
+            return;
+        }
+        try {
+            await submitUserFollowUp(ticketId, followUpMessage);
+            showAlert('Response sent successfully!', 'success');
+            await loadContactHistory();
+        } catch (error) {
+            console.error('Error sending follow-up:', error);
+            showAlert('Error sending response. Please try again.', 'error');
+        }
+    };
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
+
+    <!-- Include after your main scripts -->
+    <script src="../assets/js/logout.js" type="module"></script>
+    <script src="../assets/js/client.js" type="module"></script>
+  </body>
+</html>

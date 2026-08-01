@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Signup - Tasknory</title>
+  <link rel="stylesheet" href="../assets/css/client/auth.css">
+  <link rel="canonical" href="https://tasknory.com/client/signup.html/" />
+  <link rel="icon" href="../tasknory.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <div class="signup-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Join as a Client</h1>
+        <p>Find the best freelancers for your projects</p>
+      </div>
+      
+      <form id="clientSignupForm" class="auth-form">
+        <!-- Basic Info -->
+        <div class="form-group">
+          <label for="full_name">Full Name</label>
+          <input type="text" id="full_name" name="full_name" class="form-input" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="Create a strong password" required>
+        </div>
+
+        <!-- Country -->
+<div class="form-group">
+  <label for="country">Country</label>
+  <select id="country" name="country" class="form-select" required>
+    <option value="">Loading countries...</option>
+  </select>
+</div>
+
+<!-- Telephone -->
+<div class="form-group">
+  <label for="telephone">Phone Number</label>
+  <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="Enter your phone number" required>
+  <small class="phone-format-hint" style="display: none; color: #666; font-size: 0.8rem;"></small>
+</div>
+
+        <div class="form-group">
+          <label for="language">Preferred Language</label>
+          <select id="language" name="language" class="form-select">
+            <option value="English">English</option>
+            <option value="Arabic">Arabic</option>
+            <option value="French">French</option>
+          </select>
+        </div>
+
+        <!-- Account Type -->
+        <div class="form-group">
+          <label for="account_type">Account Type</label>
+          <select id="account_type" name="account_type" class="form-select">
+            <option value="individual">Individual</option>
+            <option value="business">Business</option>
+          </select>
+        </div>
+
+        <!-- Business Name -->
+        <div class="form-group" id="businessNameGroup" style="display: none;">
+          <label for="business_name">Business Name</label>
+          <input type="text" id="business_name" name="business_name" class="form-input" placeholder="Enter your business name">
+        </div>
+
+        <!-- Tone -->
+        <div class="form-group">
+          <label for="tone">Communication Style</label>
+          <select id="tone" name="tone" class="form-select" required>
+            <option value="">Select your preferred tone</option>
+            <option value="professional">Professional</option>
+            <option value="friendly">Friendly</option>
+            <option value="direct">Direct</option>
+            <option value="collaborative">Collaborative</option>
+          </select>
+        </div>
+
+        <!-- REMOVED: ID Verification Section -->
+
+        <button type="submit" class="submit-btn">
+          Create Client Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p>By Signing up, you agree to our terms of service, cookie policy and privacy policy</p>
+        <p>Already have an account? <a href="login.html" class="auth-link">Sign in here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show/hide business name field based on account type
+    document.addEventListener('DOMContentLoaded', function() {
+      const accountType = document.getElementById('account_type');
+      const businessNameGroup = document.getElementById('businessNameGroup');
+      
+      accountType.addEventListener('change', function() {
+        if (this.value === 'business') {
+          businessNameGroup.style.display = 'block';
+          document.getElementById('business_name').setAttribute('required', 'required');
+        } else {
+          businessNameGroup.style.display = 'none';
+          document.getElementById('business_name').removeAttribute('required');
+        }
+      });
+    });
+  </script>
+
+  <script src="../assets/js/auth.js" type="module"></script>
+</body>
+</html>

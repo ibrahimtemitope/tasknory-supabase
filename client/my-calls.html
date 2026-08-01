@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calls - Tasknory</title>
+    <link rel="stylesheet" href="../assets/css/client.css" />
+    <link rel="icon" href="../tasknory.jpg">
+    <style>
+        .calls-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .calls-header {
+            margin-bottom: 2rem;
+        }
+        .calls-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .calls-header p {
+            color: var(--text-secondary, #666);
+        }
+        .status-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .status-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color, #e0e0e0);
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .status-tab.active {
+            background: var(--brand-blue, #007bff);
+            color: white;
+            border-color: var(--brand-blue, #007bff);
+        }
+        .status-tab:hover:not(.active) {
+            background: var(--bg-secondary, #f8f9fa);
+        }
+        .call-card {
+            border: 1px solid var(--border-color, #e0e0e0);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .call-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .call-card.pending {
+            border-left: 4px solid var(--warning-color, #ffc107);
+        }
+        .call-card.scheduled {
+            border-left: 4px solid var(--brand-blue, #007bff);
+        }
+        .call-card.completed {
+            border-left: 4px solid var(--success-color, #28a745);
+        }
+        .call-card.no_show, .call-card.blocked {
+            border-left: 4px solid var(--error-color, #dc3545);
+        }
+        .call-card.rescheduled {
+            border-left: 4px solid var(--info-color, #17a2b8);
+        }
+        .call-card.cancelled {
+            border-left: 4px solid var(--text-secondary, #666);
+        }
+        .call-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .call-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .call-type-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .call-type-badge.guidance {
+            background: var(--info-bg, #d1ecf1);
+            color: var(--info-color, #0c5460);
+        }
+        .call-type-badge.freelance_request {
+            background: var(--success-bg, #d4edda);
+            color: var(--success-color, #155724);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status-badge.pending {
+            background: var(--warning-bg, #fff3cd);
+            color: var(--warning-color, #856404);
+        }
+        .status-badge.scheduled {
+            background: var(--brand-blue-light, rgba(0,123,255,0.1));
+            color: var(--brand-blue, #007bff);
+        }
+        .status-badge.completed {
+            background: var(--success-bg, #d4edda);
+            color: var(--success-color, #155724);
+        }
+        .status-badge.no_show {
+            background: var(--error-bg, #f8d7da);
+            color: var(--error-color, #721c24);
+        }
+        .status-badge.rescheduled {
+            background: var(--info-bg, #d1ecf1);
+            color: var(--info-color, #0c5460);
+        }
+        .status-badge.blocked {
+            background: var(--error-bg, #f8d7da);
+            color: var(--error-color, #721c24);
+        }
+        .status-badge.cancelled {
+            background: var(--secondary-bg, #e2e3e5);
+            color: var(--secondary-color, #383d41);
+        }
+        .call-details {
+            display: grid;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .detail-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .detail-label {
+            color: var(--text-secondary, #666);
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+        .detail-value {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .call-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .call-actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        .empty-state .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .empty-state h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .empty-state p {
+            color: var(--text-secondary, #666);
+            margin-bottom: 1.5rem;
+        }
+        .scheduled-time {
+            background: var(--brand-blue-light, rgba(0,123,255,0.05));
+            border: 1px solid var(--brand-blue, #007bff);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .scheduled-time .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary, #666);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .scheduled-time .time {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brand-blue, #007bff);
+        }
+        .reminder-box {
+            background: var(--warning-bg, #fff3cd);
+            border: 1px solid var(--warning-color, #ffc107);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .reminder-box .icon {
+            margin-right: 0.5rem;
+        }
+        .blocked-message {
+            background: var(--error-bg, #f8d7da);
+            border: 1px solid var(--error-color, #dc3545);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--error-color, #721c24);
+        }
+        .blocked-message strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 600px) {
+            .call-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .detail-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            .detail-label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <h1 class="logo">Tasknory</h1>
+        </div>
+        <div class="theme-toggle-container">
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-label">Dark Mode</span>
+            </button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="book-call.html" class="nav-link"><span class="label">Book a Call</span></a></li>
+            <li><a href="my-calls.html" class="nav-link active"><span class="label">My Calls</span></a></li>
+            <li><a href="post-job.html" class="nav-link"><span class="label">Post Job</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matches</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">My Hires</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li class="nav-item"><a href="#" class="nav-link logout"><span>Logout</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-content">
+                <h1>My Calls</h1>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <div class="calls-container">
+                <div class="calls-header">
+                    <h1>My Consultation Calls</h1>
+                    <p>Track the status of your booked calls</p>
+                </div>
+
+                <div class="status-tabs">
+                    <button class="status-tab active" data-filter="all" onclick="filterCalls('all')">All</button>
+                    <button class="status-tab" data-filter="pending" onclick="filterCalls('pending')">Pending</button>
+                    <button class="status-tab" data-filter="scheduled" onclick="filterCalls('scheduled')">Scheduled</button>
+                    <button class="status-tab" data-filter="completed" onclick="filterCalls('completed')">Completed</button>
+                    <button class="status-tab" data-filter="other" onclick="filterCalls('other')">Other</button>
+                </div>
+
+                <div id="callsList">
+                    <div class="loading" style="text-align: center; padding: 3rem;">Loading your calls...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const sidebar = document.getElementById("sidebar");
+            if (mobileMenuBtn && sidebar) {
+                mobileMenuBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle("mobile-open");
+                    mobileMenuBtn.classList.toggle("active");
+                });
+                document.addEventListener("click", function (e) {
+                    if (sidebar.classList.contains("mobile-open")) {
+                        if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+                            sidebar.classList.remove("mobile-open");
+                            mobileMenuBtn.classList.remove("active");
+                        }
+                    }
+                });
+                sidebar.addEventListener("click", function (e) { e.stopPropagation(); });
+            }
+        });
+    </script>
+    <script src="../assets/js/my-calls.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FSB13YC3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FSB13YC3E');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wglr7ztz0q");
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freelancer Skills - Tasknory</title>
+  <link rel="stylesheet" href="../assets/css/freelancer.css" />
+  <link rel="stylesheet" href="../assets/css/freelancer/skills.css">
+  <link rel="canonical" href="https://tasknory.com/freelancer/skills.html/" />
+  <link rel="icon" href="../tasknory.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hire AI Integration Specialists | Pre-Vetted, Fixed Price, 48h">
+<meta property="og:description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals.">
+  <meta name="description" content="Hire pre-vetted AI integration specialists for Shopify, WordPress, and React. Fixed-price projects. No proposals, no bidding wars. Get matched in 2 hours, delivered in 48.">
+  <meta property="og:image" content="https://tasknory.com/preview.png">
+  <meta property="og:url" content="https://tasknory.com">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <!-- ┌------------- SIDEBAR NAV -------------┐ -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <h1 class="logo">Tasknory</h1>
+    </div>
+
+          <div class="theme-toggle-container">
+        <button
+          id="themeToggle"
+          class="theme-toggle-btn"
+          aria-label="Toggle theme"
+        >
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Dark Mode</span>
+        </button>
+      </div>
+
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="label">Dashboard</span></a></li>
+            <li><a href="skills.html" class="nav-link active"><span class="label">Skills</span></a></li>
+            <li><a href="matches.html" class="nav-link"><span class="label">Matched Jobs</span></a></li>
+            <li><a href="hires.html" class="nav-link"><span class="label">Projects</span></a></li>
+            <li><a href="final-submissions.html" class="nav-link"><span class="label">Single Job Submissions</span></a></li>
+            <li><a href="milestones.html" class="nav-link"><span class="label">Milestone Job Submissions</span></a></li>
+            <li><a href="wallet.html" class="nav-link"><span class="label">Wallet</span></a></li>
+            <li><a href="withdrawal.html" class="nav-link"><span class="label">Withdraw Funds</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="label">Settings</span></a></li>
+            <li><a href="contact-support.html" class="nav-link"><span class="label">Support</span></a></li>
+            <li class="nav-footer"><a href="login.html" class="nav-link logout"></a><span class="label">Logout</span></a></li>
+        </ul>
+        </nav>
+
+  <!-- ┌------------- MAIN CONTENT WRAPPER -------------┐ -->
+  <div class="main-wrapper" id="mainWrapper">
+    <!-- ADD THIS MOBILE HEADER -->
+    <header class="top-header">
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="header-content">
+        <h1>Manage Your Skills</h1>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <!-- Add New Skill -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>Add a New Skill</h2>
+        </div>
+        <div class="add-skill-form">
+          <div class="form-group">
+            <label for="skillSelect">Select Skill</label>
+            <select id="skillSelect" class="form-input">
+              <option value="">-- Select Skill --</option>
+              <!-- Populated dynamically from skills_master -->
+            </select>
+          </div>
+          <button id="addSkillBtn" class="btn btn-primary">Add Skill</button>
+        </div>
+      </section>
+
+      <!-- Verified Skills -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>✅ Verified Skills</h2>
+        </div>
+        <div id="verifiedSkills" class="skills-grid"></div>
+      </section>
+
+      <!-- Pending Verification -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>⏳ Pending Verification</h2>
+        </div>
+        <div id="pendingSkills" class="skills-grid"></div>
+      </section>
+
+      <!-- Unverified Skills -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>❌ Unverified Skills</h2>
+        </div>
+        <div id="unverifiedSkills" class="skills-grid"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Verification Form Template (hidden, shown on "Verify now") -->
+  <template id="verifyFormTemplate">
+    <form class="verify-form">
+      <div class="form-group">
+        <label>Years of Experience</label>
+        <input type="number" name="years_experience" min="0" required class="form-input" />
+      </div>
+      
+      <div class="form-group">
+        <label>Reference Link</label>
+        <input type="url" name="reference_link" placeholder="https://..." required class="form-input" />
+      </div>
+      
+      <div class="form-group">
+        <label>Upload Proof (optional)</label>
+        <div class="file-upload">
+          <input type="file" id="proofFile" name="proof" accept=".pdf,.png,.jpg,.jpeg" class="file-input" />
+          <label for="proofFile" class="file-label">Choose file</label>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submit for Verification</button>
+    </form>
+  </template>
+
+  <script>
+    // Mobile menu functionality - SIMPLE FIXED VERSION
+// Mobile menu functionality - IMPROVED VERSION
+document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("mobile-open");
+            mobileMenuBtn.classList.toggle("active");
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener("click", function (e) {
+            if (sidebar.classList.contains("mobile-open")) {
+                // Check if click is outside sidebar AND not on mobile menu button
+                if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove("mobile-open");
+                    mobileMenuBtn.classList.remove("active");
+                }
+            }
+        });
+
+        // Prevent sidebar clicks from closing the sidebar
+        sidebar.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+
+        // Close sidebar when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove("mobile-open");
+                mobileMenuBtn.classList.remove("active");
+            });
+        });
+    }
+});
+  </script>
+
+  <script src="../assets/js/freelancer/skills.js" type="module"></script>
+</body>
+</html>
