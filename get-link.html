@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get your Tasknory group link</title>
+    <meta
+      name="description"
+      content="Already in the Tasknory WhatsApp group? Confirm your number and copy a personal referral link."
+    />
+    <meta name="theme-color" content="#f3eee4" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='10' fill='%2314281f'/%3E%3Ccircle cx='18' cy='14' r='3.2' fill='%23e7d3a8'/%3E%3Cpath d='M10 23c2.5-7 13.5-7 16 0' fill='none' stroke='%23e7d3a8' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,520;0,9..144,560;1,9..144,520&family=Outfit:wght@380;480;580;650&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./referral.css" />
+  </head>
+  <body data-page="share">
+    <noscript>
+      <p class="alert" style="margin: 16px">Turn on JavaScript to save your number and copy your link.</p>
+    </noscript>
+    <a class="skip" href="#share-form">Skip to the form</a>
+    <div class="watermark" aria-hidden="true">circle</div>
+
+    <header class="top">
+      <a class="brand" href="https://tasknory.com">
+        <svg class="mark" viewBox="0 0 36 36" aria-hidden="true">
+          <rect width="36" height="36" rx="12" fill="#14281f" />
+          <circle cx="18" cy="14" r="3.2" fill="#e7d3a8" />
+          <path d="M10 23c2.5-7 13.5-7 16 0" fill="none" stroke="#e7d3a8" stroke-width="1.7" stroke-linecap="round" />
+        </svg>
+        <span class="brand-text">
+          <strong>Tasknory</strong>
+          <small>LTD.</small>
+        </span>
+      </a>
+      <p class="top-note">Group referral</p>
+    </header>
+
+    <main class="stage">
+      <section class="story">
+        <p class="eyebrow">For members already inside</p>
+        <h1>Share the circle.<br /><em>Keep the credit.</em></h1>
+        <p class="lede">
+          Confirm your mobile number and that you are already on the group link.
+          You get one link to copy. When someone joins through it, both numbers are saved.
+        </p>
+        <figure class="frame">
+          <img
+            src="./images/circle.jpg"
+            alt="Two colleagues talking over a phone at a sunlit table"
+            onerror="this.hidden=true"
+          />
+          <figcaption>One link. Two numbers. A clean trail.</figcaption>
+        </figure>
+        <ol class="steps">
+          <li>
+            <span>01</span>
+            <div>
+              <strong>Confirm</strong>
+              <p>Your number, and that you are already on the group link.</p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <strong>Copy</strong>
+              <p>A link in the form tasknory.com/group-referral.html?ref=your number.</p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <strong>They join</strong>
+              <p>They enter their number. We store the referral, then open WhatsApp.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="panel" aria-labelledby="form-title">
+        <p class="panel-kicker">Your share link</p>
+        <h2 id="form-title">Get a link with your number on it</h2>
+        <p class="panel-copy">Nigerian numbers starting with 0 are fine. We turn 080… into +234.</p>
+
+        <p class="alert" id="setup-banner" hidden>
+          Supabase is not ready yet. Run
+          <a href="./supabase-setup.sql">supabase-setup.sql</a>
+          in the SQL Editor so numbers can be saved.
+        </p>
+
+        <div id="form-block">
+          <form id="share-form" novalidate>
+            <label class="hp" aria-hidden="true">
+              Company
+              <input id="company" name="company" tabindex="-1" autocomplete="off" />
+            </label>
+
+            <div class="field">
+              <label class="field-label" for="phone">Mobile number</label>
+              <div class="phone-row">
+                <select id="country" name="country" aria-label="Country code"></select>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel-national"
+                  placeholder="801 234 5678"
+                  maxlength="20"
+                  required
+                />
+              </div>
+              <p class="hint">This number becomes the <code>ref</code> on the link you copy.</p>
+              <p class="link-preview" id="link-preview" hidden></p>
+            </div>
+
+            <label class="check">
+              <input id="on-group" name="on-group" type="checkbox" />
+              <span>
+                <strong>I am already on the group link</strong>
+                <small>Tick this only if you are already in the Tasknory WhatsApp group.</small>
+              </span>
+            </label>
+
+            <p class="alert" id="form-error" role="alert" hidden></p>
+
+            <button class="btn btn-ink" id="submit-btn" type="submit">
+              <span class="btn-label">Generate my link</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="ticket" id="success" hidden>
+          <p class="ticket-kicker">Saved as <span id="saved-as"></span></p>
+          <a class="link-url" id="referral-link" href="#"></a>
+          <div class="actions">
+            <button class="btn btn-cream" id="copy-btn" type="button">
+              <span class="btn-label">Copy link</span>
+            </button>
+            <a class="btn btn-ghost" id="wa-share" href="#" target="_blank" rel="noopener">
+              <span class="btn-label">Send on WhatsApp</span>
+            </a>
+          </div>
+          <div class="stats" id="stats" hidden>
+            <div>
+              <strong id="stat-visits">0</strong>
+              <span>Link opens</span>
+            </div>
+            <div>
+              <strong id="stat-joins">0</strong>
+              <span>Joined through you</span>
+            </div>
+          </div>
+          <p class="ticket-foot">
+            Give people this exact link. When they open it, your number travels with them as <code>ref</code>.
+          </p>
+          <div class="ticket-extra">
+            <a id="preview-join" href="#">Preview what they see</a>
+            <button id="reset-btn" type="button">Use a different number</button>
+          </div>
+        </div>
+
+        <p class="fine">No account and no password. Your number is written to the Tasknory group list so the invite can be counted.</p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Tasknory LTD · Africa-first AI talent</p>
+      <a href="https://tasknory.com">tasknory.com</a>
+    </footer>
+
+    <script src="./referral.js" defer></script>
+  </body>
+</html>
